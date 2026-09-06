@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>KenaTech — Engineering the Future</title>
 
@@ -11,13 +16,17 @@
         content="KenaTech builds scalable software, SaaS platforms and modern digital ecosystems."
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
 
 <body>
 
     <div class="background background-one"></div>
     <div class="background background-two"></div>
+
 
     <!-- NAVBAR -->
 
@@ -28,14 +37,45 @@
         </a>
 
         <ul class="nav-links">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+
             <li>
-                <button class="nav-admin" id="openAdmin">
+                <a href="#services">
+                    Services
+                </a>
+            </li>
+
+            <li>
+                <a href="#projects">
+                    Projects
+                </a>
+            </li>
+
+            <li>
+                <a href="#contact">
+                    Contact
+                </a>
+            </li>
+
+            <li>
+                <button
+                    class="nav-admin"
+                    id="openClientPortal"
+                    type="button"
+                >
+                    Client Portal
+                </button>
+            </li>
+
+            <li>
+                <button
+                    class="nav-admin"
+                    id="openAdmin"
+                    type="button"
+                >
                     Admin
                 </button>
             </li>
+
         </ul>
 
     </nav>
@@ -64,11 +104,17 @@
 
             <div class="hero-buttons">
 
-                <a href="#contact" class="btn-primary">
+                <a
+                    href="#contact"
+                    class="btn-primary"
+                >
                     Start a Project
                 </a>
 
-                <a href="#services" class="btn-secondary">
+                <a
+                    href="#services"
+                    class="btn-secondary"
+                >
                     Explore Services
                 </a>
 
@@ -100,7 +146,10 @@
 
     <!-- SERVICES -->
 
-    <section class="section" id="services">
+    <section
+        class="section"
+        id="services"
+    >
 
         <div class="section-heading">
 
@@ -216,7 +265,10 @@
 
     <!-- PROJECTS -->
 
-    <section class="section projects-section" id="projects">
+    <section
+        class="section projects-section"
+        id="projects"
+    >
 
         <div class="section-heading">
 
@@ -240,6 +292,7 @@
             <article class="project-card">
 
                 <div class="project-top">
+
                     <span class="project-tag">
                         SaaS
                     </span>
@@ -247,6 +300,7 @@
                     <span class="project-arrow">
                         ↗
                     </span>
+
                 </div>
 
                 <h3>
@@ -259,9 +313,11 @@
                 </p>
 
                 <div class="project-tech">
+
                     <span>Web</span>
                     <span>SaaS</span>
                     <span>Dashboard</span>
+
                 </div>
 
             </article>
@@ -270,6 +326,7 @@
             <article class="project-card">
 
                 <div class="project-top">
+
                     <span class="project-tag">
                         Platform
                     </span>
@@ -277,6 +334,7 @@
                     <span class="project-arrow">
                         ↗
                     </span>
+
                 </div>
 
                 <h3>
@@ -289,9 +347,11 @@
                 </p>
 
                 <div class="project-tech">
+
                     <span>Cloud</span>
                     <span>API</span>
                     <span>Software</span>
+
                 </div>
 
             </article>
@@ -300,6 +360,7 @@
             <article class="project-card">
 
                 <div class="project-top">
+
                     <span class="project-tag">
                         Product
                     </span>
@@ -307,6 +368,7 @@
                     <span class="project-arrow">
                         ↗
                     </span>
+
                 </div>
 
                 <h3>
@@ -319,9 +381,11 @@
                 </p>
 
                 <div class="project-tech">
+
                     <span>AI</span>
                     <span>Automation</span>
                     <span>Tech</span>
+
                 </div>
 
             </article>
@@ -352,7 +416,10 @@
 
         </div>
 
-        <a href="#contact" class="btn-primary">
+        <a
+            href="#contact"
+            class="btn-primary"
+        >
             Start Building →
         </a>
 
@@ -361,7 +428,10 @@
 
     <!-- CONTACT -->
 
-    <section class="contact-section" id="contact">
+    <section
+        class="contact-section"
+        id="contact"
+    >
 
         <div class="contact-card">
 
@@ -402,7 +472,10 @@
             </div>
 
 
-            <form id="leadForm" class="lead-form">
+            <form
+                id="leadForm"
+                class="lead-form"
+            >
 
                 <label>
                     Name / Company
@@ -431,7 +504,10 @@
                 <label>
                     Project Type
 
-                    <select id="projectType" required>
+                    <select
+                        id="projectType"
+                        required
+                    >
 
                         <option value="">
                             Select project type
@@ -510,15 +586,19 @@
     </footer>
 
 
-    <!-- ADMIN LOGIN MODAL -->
+    <!-- ADMIN LOGIN -->
 
-    <div class="modal" id="adminLoginModal">
+    <div
+        class="modal"
+        id="adminLoginModal"
+    >
 
         <div class="modal-box">
 
             <button
                 class="modal-close"
                 id="closeLogin"
+                type="button"
             >
                 ×
             </button>
@@ -539,9 +619,10 @@
             <form id="loginForm">
 
                 <input
-                    type="text"
+                    type="email"
                     id="adminUsername"
-                    placeholder="Username"
+                    placeholder="Admin Email"
+                    autocomplete="email"
                     required
                 >
 
@@ -549,6 +630,7 @@
                     type="password"
                     id="adminPassword"
                     placeholder="Password"
+                    autocomplete="current-password"
                     required
                 >
 
@@ -562,6 +644,213 @@
                 <div id="loginStatus"></div>
 
             </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- CLIENT AUTH MODAL -->
+
+    <div
+        class="modal"
+        id="clientAuthModal"
+    >
+
+        <div class="modal-box client-auth-box">
+
+            <button
+                class="modal-close"
+                id="closeClientAuth"
+                type="button"
+            >
+                ×
+            </button>
+
+            <div class="modal-icon">
+                👤
+            </div>
+
+            <h2>
+                KenaTech Client Portal
+            </h2>
+
+            <p>
+                Access your projects and progress.
+            </p>
+
+
+            <div class="auth-tabs">
+
+                <button
+                    class="auth-tab active"
+                    id="showClientLogin"
+                    type="button"
+                >
+                    Login
+                </button>
+
+                <button
+                    class="auth-tab"
+                    id="showClientRegister"
+                    type="button"
+                >
+                    Register
+                </button>
+
+            </div>
+
+
+            <form
+                id="clientLoginForm"
+                class="client-auth-form"
+            >
+
+                <input
+                    type="email"
+                    id="clientLoginEmail"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="clientLoginPassword"
+                    placeholder="Password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn-primary btn-full"
+                >
+                    Login to Portal
+                </button>
+
+            </form>
+
+
+            <form
+                id="clientRegisterForm"
+                class="client-auth-form hidden"
+            >
+
+                <input
+                    type="text"
+                    id="clientRegisterName"
+                    placeholder="Full Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="clientRegisterEmail"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="clientRegisterPassword"
+                    placeholder="Password"
+                    minlength="8"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn-primary btn-full"
+                >
+                    Create Client Account
+                </button>
+
+            </form>
+
+            <div id="clientAuthStatus"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CLIENT PORTAL -->
+
+    <div
+        class="client-panel"
+        id="clientPanel"
+    >
+
+        <div class="admin-topbar">
+
+            <div>
+
+                <span class="section-label">
+                    KENATECH CLIENT SYSTEM
+                </span>
+
+                <h2>
+                    Client Portal
+                </h2>
+
+            </div>
+
+
+            <div class="admin-top-actions">
+
+                <div class="admin-user">
+
+                    <span class="online-dot"></span>
+
+                    <div>
+
+                        <small>
+                            Signed in as
+                        </small>
+
+                        <strong id="clientIdentity">
+                            Client
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn-secondary"
+                    id="logoutClient"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="client-container">
+
+            <div class="client-welcome">
+
+                <span class="section-label">
+                    MY WORKSPACE
+                </span>
+
+                <h1 id="clientWelcomeTitle">
+                    Welcome to KenaTech
+                </h1>
+
+                <p>
+                    Track your active projects and development progress.
+                </p>
+
+            </div>
+
+
+            <div
+                id="clientProjectList"
+                class="client-project-grid"
+            ></div>
 
         </div>
 
@@ -589,12 +878,36 @@
 
             </div>
 
-            <button
-                class="btn-secondary"
-                id="logoutAdmin"
-            >
-                Logout
-            </button>
+
+            <div class="admin-top-actions">
+
+                <div class="admin-user">
+
+                    <span class="online-dot"></span>
+
+                    <div>
+
+                        <small>
+                            Signed in as
+                        </small>
+
+                        <strong id="adminIdentity">
+                            Admin
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn-secondary"
+                    id="logoutAdmin"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
 
         </div>
 
@@ -607,6 +920,10 @@
             <div class="admin-stats-grid">
 
                 <div class="admin-stat">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
 
                     <span>
                         Total Leads
@@ -621,6 +938,10 @@
 
                 <div class="admin-stat">
 
+                    <div class="stat-icon">
+                        ✨
+                    </div>
+
                     <span>
                         New
                     </span>
@@ -634,6 +955,10 @@
 
                 <div class="admin-stat">
 
+                    <div class="stat-icon">
+                        💬
+                    </div>
+
                     <span>
                         Contacted
                     </span>
@@ -646,6 +971,10 @@
 
 
                 <div class="admin-stat">
+
+                    <div class="stat-icon">
+                        🏆
+                    </div>
 
                     <span>
                         Won
@@ -665,21 +994,123 @@
             <div class="leads-header">
 
                 <div>
+
+                    <span class="section-label">
+                        SALES PIPELINE
+                    </span>
+
                     <h2>
                         Incoming Proposals
                     </h2>
 
                     <p>
-                        Manage your potential clients.
+                        Manage and track potential KenaTech clients.
                     </p>
+
                 </div>
 
-                <button
-                    class="btn-secondary"
-                    id="clearLeads"
-                >
-                    Clear All
-                </button>
+
+                <div class="leads-header-actions">
+
+                    <button
+                        class="dashboard-button"
+                        id="refreshLeads"
+                        type="button"
+                    >
+                        ↻ Refresh
+                    </button>
+
+                    <button
+                        class="dashboard-button danger-outline"
+                        id="clearLeads"
+                        type="button"
+                    >
+                        Clear All
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-toolbar">
+
+                <div class="search-box">
+
+                    <span>
+                        🔎
+                    </span>
+
+                    <input
+                        type="search"
+                        id="leadSearch"
+                        placeholder="Search name, email, project..."
+                    >
+
+                </div>
+
+
+                <select id="statusFilter">
+
+                    <option value="all">
+                        All Statuses
+                    </option>
+
+                    <option value="new">
+                        New
+                    </option>
+
+                    <option value="contacted">
+                        Contacted
+                    </option>
+
+                    <option value="won">
+                        Won
+                    </option>
+
+                </select>
+
+
+                <select id="projectFilter">
+
+                    <option value="all">
+                        All Project Types
+                    </option>
+
+                    <option value="Website">
+                        Website
+                    </option>
+
+                    <option value="Web Application">
+                        Web Application
+                    </option>
+
+                    <option value="SaaS">
+                        SaaS Product
+                    </option>
+
+                    <option value="Mobile App">
+                        Mobile App
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="dashboard-meta">
+
+                <span id="visibleLeadCount">
+                    0 proposals
+                </span>
+
+                <span id="lastSynced">
+                    Not synced yet
+                </span>
 
             </div>
 
@@ -689,12 +1120,131 @@
                 class="lead-grid"
             ></div>
 
+
+            <!-- CLIENT PROJECT MANAGEMENT -->
+
+            <div class="admin-project-section">
+
+                <div class="leads-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            CLIENT OPERATIONS
+                        </span>
+
+                        <h2>
+                            Client Projects
+                        </h2>
+
+                        <p>
+                            Create and manage projects visible in the client portal.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="dashboard-button"
+                        id="refreshAdminProjects"
+                        type="button"
+                    >
+                        ↻ Refresh Projects
+                    </button>
+
+                </div>
+
+
+                <form
+                    id="adminProjectForm"
+                    class="admin-project-form"
+                >
+
+                    <select
+                        id="adminProjectClient"
+                        required
+                    >
+                        <option value="">
+                            Select Client
+                        </option>
+                    </select>
+
+
+                    <input
+                        type="text"
+                        id="adminProjectTitle"
+                        placeholder="Project title"
+                        required
+                    >
+
+
+                    <select
+                        id="adminProjectType"
+                        required
+                    >
+
+                        <option value="">
+                            Project Type
+                        </option>
+
+                        <option value="Website">
+                            Website
+                        </option>
+
+                        <option value="Web Application">
+                            Web Application
+                        </option>
+
+                        <option value="SaaS">
+                            SaaS
+                        </option>
+
+                        <option value="Mobile App">
+                            Mobile App
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+
+                    <textarea
+                        id="adminProjectDescription"
+                        rows="3"
+                        placeholder="Project description"
+                        required
+                    ></textarea>
+
+
+                    <button
+                        class="btn-primary"
+                        type="submit"
+                    >
+                        Create Project
+                    </button>
+
+                </form>
+
+                <div id="adminProjectStatus"></div>
+
+
+                <div
+                    id="adminProjectList"
+                    class="admin-project-grid"
+                ></div>
+
+            </div>
+
         </div>
 
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="script.js"></script>
 
 </body>
+
 </html>
