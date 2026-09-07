@@ -1,1250 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <meta name="description" content="KenaTech builds scalable software, SaaS platforms and modern digital ecosystems.">
+    <meta property="og:title" content="KenaTech — Engineering the Future">
+    <meta property="og:description" content="Scalable software, SaaS platforms and modern digital ecosystems.">
+    <meta property="og:type" content="website">
     <title>KenaTech — Engineering the Future</title>
-
-    <meta
-        name="description"
-        content="KenaTech builds scalable software, SaaS platforms and modern digital ecosystems."
-    >
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23030712'/%3E%3Cpath d='M15 14h9v15l14-15h11L34 30l16 20H39L27 36l-3 3v11h-9z' fill='%233b82f6'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <div class="background background-one"></div>
     <div class="background background-two"></div>
 
-
-    <!-- NAVBAR -->
-
-    <nav class="navbar">
-
-        <a href="#" class="logo">
-            Kena<span>Tech</span>
-        </a>
-
+    <nav class="navbar" aria-label="Primary navigation">
+        <a href="#" class="logo" aria-label="KenaTech home">Kena<span>Tech</span></a>
         <ul class="nav-links">
-
-            <li>
-                <a href="#services">
-                    Services
-                </a>
-            </li>
-
-            <li>
-                <a href="#projects">
-                    Projects
-                </a>
-            </li>
-
-            <li>
-                <a href="#contact">
-                    Contact
-                </a>
-            </li>
-
-            <li>
-                <button
-                    class="nav-admin"
-                    id="openClientPortal"
-                    type="button"
-                >
-                    Client Portal
-                </button>
-            </li>
-
-            <li>
-                <button
-                    class="nav-admin"
-                    id="openAdmin"
-                    type="button"
-                >
-                    Admin
-                </button>
-            </li>
-
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button class="nav-admin" id="openClientPortal" type="button">Client Portal</button></li>
+            <li><button class="nav-admin" id="openAdmin" type="button">Admin</button></li>
         </ul>
-
     </nav>
 
-
-    <!-- HERO -->
-
     <header class="hero">
-
         <div class="hero-content">
-
-            <div class="badge">
-                🚀 Engineering the Future
-            </div>
-
-            <h1>
-                We Build
-                <span>Digital Ecosystems</span>
-            </h1>
-
-            <p>
-                KenaTech transforms ambitious ideas into scalable,
-                high-performance software, SaaS platforms and modern
-                digital products.
-            </p>
-
+            <div class="badge">🚀 Engineering the Future</div>
+            <h1>We Build <span>Digital Ecosystems</span></h1>
+            <p>KenaTech transforms ambitious ideas into scalable, high-performance software, SaaS platforms and modern digital products.</p>
             <div class="hero-buttons">
-
-                <a
-                    href="#contact"
-                    class="btn-primary"
-                >
-                    Start a Project
-                </a>
-
-                <a
-                    href="#services"
-                    class="btn-secondary"
-                >
-                    Explore Services
-                </a>
-
+                <a href="#contact" class="btn-primary">Start a Project</a>
+                <a href="#services" class="btn-secondary">Explore Services</a>
             </div>
-
-            <div class="hero-trust">
-
-                <div>
-                    <strong>10+</strong>
-                    <span>Technologies</span>
-                </div>
-
-                <div>
-                    <strong>24/7</strong>
-                    <span>Digital Systems</span>
-                </div>
-
-                <div>
-                    <strong>100%</strong>
-                    <span>Engineering Focus</span>
-                </div>
-
+            <div class="hero-trust" aria-label="KenaTech highlights">
+                <div><strong>10+</strong><span>Technologies</span></div>
+                <div><strong>24/7</strong><span>Digital Systems</span></div>
+                <div><strong>100%</strong><span>Engineering Focus</span></div>
             </div>
-
         </div>
-
     </header>
 
-
-    <!-- SERVICES -->
-
-    <section
-        class="section"
-        id="services"
-    >
-
+    <section class="section" id="services">
         <div class="section-heading">
-
-            <span class="section-label">
-                WHAT WE DO
-            </span>
-
-            <h2>
-                Our Core Capabilities
-            </h2>
-
-            <p>
-                From idea to production, we engineer complete
-                digital systems.
-            </p>
-
+            <span class="section-label">WHAT WE DO</span>
+            <h2>Our Core Capabilities</h2>
+            <p>From idea to production, we engineer complete digital systems.</p>
         </div>
-
-
         <div class="service-grid">
-
             <article class="service-card">
-
-                <div class="service-icon">
-                    ⚡
-                </div>
-
-                <h3>
-                    Web Engineering
-                </h3>
-
-                <p>
-                    High-performance websites and web applications
-                    designed for modern businesses.
-                </p>
-
-                <span class="service-number">
-                    01
-                </span>
-
+                <div class="service-icon">⚡</div>
+                <h3>Web Engineering</h3>
+                <p>High-performance websites and web applications designed for modern businesses.</p>
+                <span class="service-number">01</span>
             </article>
-
-
             <article class="service-card">
-
-                <div class="service-icon">
-                    ☁️
-                </div>
-
-                <h3>
-                    SaaS & Cloud
-                </h3>
-
-                <p>
-                    Scalable cloud platforms, dashboards, APIs and
-                    software-as-a-service products.
-                </p>
-
-                <span class="service-number">
-                    02
-                </span>
-
+                <div class="service-icon">☁️</div>
+                <h3>SaaS & Cloud</h3>
+                <p>Scalable cloud platforms, dashboards, APIs and software-as-a-service products.</p>
+                <span class="service-number">02</span>
             </article>
-
-
             <article class="service-card">
-
-                <div class="service-icon">
-                    🎨
-                </div>
-
-                <h3>
-                    UI/UX Systems
-                </h3>
-
-                <p>
-                    Modern interfaces focused on usability,
-                    performance and conversion.
-                </p>
-
-                <span class="service-number">
-                    03
-                </span>
-
+                <div class="service-icon">🎨</div>
+                <h3>UI/UX Systems</h3>
+                <p>Modern interfaces focused on usability, performance and conversion.</p>
+                <span class="service-number">03</span>
             </article>
-
-
             <article class="service-card">
-
-                <div class="service-icon">
-                    🔐
-                </div>
-
-                <h3>
-                    Secure Software
-                </h3>
-
-                <p>
-                    Security-focused architecture for applications,
-                    APIs and digital infrastructure.
-                </p>
-
-                <span class="service-number">
-                    04
-                </span>
-
+                <div class="service-icon">🔐</div>
+                <h3>Secure Software</h3>
+                <p>Security-focused architecture for applications, APIs and digital infrastructure.</p>
+                <span class="service-number">04</span>
             </article>
-
         </div>
-
     </section>
 
-
-    <!-- PROJECTS -->
-
-    <section
-        class="section projects-section"
-        id="projects"
-    >
-
+    <section class="section projects-section" id="projects">
         <div class="section-heading">
-
-            <span class="section-label">
-                OUR WORK
-            </span>
-
-            <h2>
-                Built for the Future
-            </h2>
-
-            <p>
-                KenaTech products and digital experiences.
-            </p>
-
+            <span class="section-label">OUR WORK</span>
+            <h2>Built for the Future</h2>
+            <p>KenaTech products and digital experiences.</p>
         </div>
-
-
         <div class="project-grid">
-
             <article class="project-card">
-
-                <div class="project-top">
-
-                    <span class="project-tag">
-                        SaaS
-                    </span>
-
-                    <span class="project-arrow">
-                        ↗
-                    </span>
-
-                </div>
-
-                <h3>
-                    Kenan Product
-                </h3>
-
-                <p>
-                    A management platform designed for freelancers
-                    and digital professionals.
-                </p>
-
-                <div class="project-tech">
-
-                    <span>Web</span>
-                    <span>SaaS</span>
-                    <span>Dashboard</span>
-
-                </div>
-
+                <div class="project-top"><span class="project-tag">SaaS</span><span class="project-arrow">↗</span></div>
+                <h3>Kenan Product</h3>
+                <p>A management platform designed for freelancers and digital professionals.</p>
+                <div class="project-tech"><span>Web</span><span>SaaS</span><span>Dashboard</span></div>
             </article>
-
-
             <article class="project-card">
-
-                <div class="project-top">
-
-                    <span class="project-tag">
-                        Platform
-                    </span>
-
-                    <span class="project-arrow">
-                        ↗
-                    </span>
-
-                </div>
-
-                <h3>
-                    Digital Core
-                </h3>
-
-                <p>
-                    Business infrastructure connecting clients,
-                    projects and operations.
-                </p>
-
-                <div class="project-tech">
-
-                    <span>Cloud</span>
-                    <span>API</span>
-                    <span>Software</span>
-
-                </div>
-
+                <div class="project-top"><span class="project-tag">Platform</span><span class="project-arrow">↗</span></div>
+                <h3>Digital Core</h3>
+                <p>Business infrastructure connecting clients, projects and operations.</p>
+                <div class="project-tech"><span>Cloud</span><span>API</span><span>Software</span></div>
             </article>
-
-
             <article class="project-card">
-
-                <div class="project-top">
-
-                    <span class="project-tag">
-                        Product
-                    </span>
-
-                    <span class="project-arrow">
-                        ↗
-                    </span>
-
-                </div>
-
-                <h3>
-                    Future Systems
-                </h3>
-
-                <p>
-                    Experimental technology products created by
-                    KenaTech.
-                </p>
-
-                <div class="project-tech">
-
-                    <span>AI</span>
-                    <span>Automation</span>
-                    <span>Tech</span>
-
-                </div>
-
+                <div class="project-top"><span class="project-tag">Product</span><span class="project-arrow">↗</span></div>
+                <h3>Future Systems</h3>
+                <p>Experimental technology products created by KenaTech.</p>
+                <div class="project-tech"><span>AI</span><span>Automation</span><span>Tech</span></div>
             </article>
-
         </div>
-
     </section>
-
-
-    <!-- CTA -->
 
     <section class="cta">
-
         <div>
-
-            <span class="section-label">
-                HAVE AN IDEA?
-            </span>
-
-            <h2>
-                Let's build something extraordinary.
-            </h2>
-
-            <p>
-                Tell us about your project and we'll turn the idea
-                into a technical plan.
-            </p>
-
+            <span class="section-label">HAVE AN IDEA?</span>
+            <h2>Let's build something extraordinary.</h2>
+            <p>Tell us about your project and we'll turn the idea into a technical plan.</p>
         </div>
-
-        <a
-            href="#contact"
-            class="btn-primary"
-        >
-            Start Building →
-        </a>
-
+        <a href="#contact" class="btn-primary">Start Building →</a>
     </section>
 
-
-    <!-- CONTACT -->
-
-    <section
-        class="contact-section"
-        id="contact"
-    >
-
+    <section class="contact-section" id="contact">
         <div class="contact-card">
-
             <div class="contact-info">
-
-                <span class="section-label">
-                    START A PROJECT
-                </span>
-
-                <h2>
-                    Work with KenaTech
-                </h2>
-
-                <p>
-                    Have a software idea? Send us the requirements
-                    and we'll review your project.
-                </p>
-
+                <span class="section-label">START A PROJECT</span>
+                <h2>Work with KenaTech</h2>
+                <p>Have a software idea? Send us the requirements and we'll review your project.</p>
                 <div class="contact-points">
-
-                    <div>
-                        <span>01</span>
-                        <p>Tell us your idea</p>
-                    </div>
-
-                    <div>
-                        <span>02</span>
-                        <p>We analyze the project</p>
-                    </div>
-
-                    <div>
-                        <span>03</span>
-                        <p>You receive a proposal</p>
-                    </div>
-
+                    <div><span>01</span><p>Tell us your idea</p></div>
+                    <div><span>02</span><p>We analyze the project</p></div>
+                    <div><span>03</span><p>You receive a proposal</p></div>
                 </div>
-
             </div>
 
-
-            <form
-                id="leadForm"
-                class="lead-form"
-            >
-
-                <label>
-                    Name / Company
-
-                    <input
-                        type="text"
-                        id="clientName"
-                        placeholder="Your name or company"
-                        required
-                    >
+            <form id="leadForm" class="lead-form">
+                <label>Name / Company
+                    <input type="text" id="clientName" placeholder="Your name or company" maxlength="120" autocomplete="organization" required>
                 </label>
-
-
-                <label>
-                    Business Email
-
-                    <input
-                        type="email"
-                        id="clientEmail"
-                        placeholder="you@company.com"
-                        required
-                    >
+                <label>Business Email
+                    <input type="email" id="clientEmail" placeholder="you@company.com" maxlength="180" autocomplete="email" required>
                 </label>
-
-
-                <label>
-                    Project Type
-
-                    <select
-                        id="projectType"
-                        required
-                    >
-
-                        <option value="">
-                            Select project type
-                        </option>
-
-                        <option value="Website">
-                            Website
-                        </option>
-
-                        <option value="Web Application">
-                            Web Application
-                        </option>
-
-                        <option value="SaaS">
-                            SaaS Product
-                        </option>
-
-                        <option value="Mobile App">
-                            Mobile App
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
+                <label>Project Type
+                    <select id="projectType" required>
+                        <option value="">Select project type</option>
+                        <option value="Website">Website</option>
+                        <option value="Web Application">Web Application</option>
+                        <option value="SaaS">SaaS Product</option>
+                        <option value="Mobile App">Mobile App</option>
+                        <option value="Other">Other</option>
                     </select>
-
                 </label>
-
-
-                <label>
-                    Project Details
-
-                    <textarea
-                        id="projectDetails"
-                        rows="5"
-                        placeholder="Describe your idea..."
-                        required
-                    ></textarea>
-
+                <label>Project Details
+                    <textarea id="projectDetails" rows="5" placeholder="Describe your idea..." maxlength="4000" required></textarea>
                 </label>
-
-
-                <button
-                    type="submit"
-                    class="btn-primary btn-full"
-                >
-                    Submit Proposal Request →
-                </button>
-
-                <div id="formStatus"></div>
-
+                <button type="submit" class="btn-primary btn-full" id="leadSubmitButton">Submit Proposal Request →</button>
+                <div id="formStatus" class="status-message" aria-live="polite"></div>
             </form>
-
         </div>
-
     </section>
-
-
-    <!-- FOOTER -->
 
     <footer>
-
-        <div class="footer-logo">
-            Kena<span>Tech</span>
-        </div>
-
-        <p>
-            Engineering the future of software.
-        </p>
-
-        <p class="copyright">
-            © 2026 KenaTech. All rights reserved.
-        </p>
-
+        <div class="footer-logo">Kena<span>Tech</span></div>
+        <p>Engineering the future of software.</p>
+        <p class="copyright">© 2026 KenaTech. All rights reserved.</p>
     </footer>
 
-
-    <!-- ADMIN LOGIN -->
-
-    <div
-        class="modal"
-        id="adminLoginModal"
-    >
-
+    <div class="modal" id="adminLoginModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
         <div class="modal-box">
-
-            <button
-                class="modal-close"
-                id="closeLogin"
-                type="button"
-            >
-                ×
-            </button>
-
-            <div class="modal-icon">
-                🔐
-            </div>
-
-            <h2>
-                KenaTech Admin
-            </h2>
-
-            <p>
-                Authorized access only.
-            </p>
-
-
+            <button class="modal-close" id="closeLogin" type="button" aria-label="Close admin login">×</button>
+            <div class="modal-icon">🔐</div>
+            <h2 id="adminModalTitle">KenaTech Admin</h2>
+            <p>Authorized access only.</p>
             <form id="loginForm">
-
-                <input
-                    type="email"
-                    id="adminUsername"
-                    placeholder="Admin Email"
-                    autocomplete="email"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="adminPassword"
-                    placeholder="Password"
-                    autocomplete="current-password"
-                    required
-                >
-
-                <button
-                    type="submit"
-                    class="btn-primary btn-full"
-                >
-                    Enter Dashboard
-                </button>
-
-                <div id="loginStatus"></div>
-
+                <input type="email" id="adminUsername" placeholder="Admin Email" autocomplete="email" required>
+                <input type="password" id="adminPassword" placeholder="Password" autocomplete="current-password" required>
+                <button type="submit" class="btn-primary btn-full" id="adminLoginButton">Enter Dashboard</button>
+                <div id="loginStatus" class="status-message" aria-live="polite"></div>
             </form>
-
         </div>
-
     </div>
 
-
-    <!-- CLIENT AUTH MODAL -->
-
-    <div
-        class="modal"
-        id="clientAuthModal"
-    >
-
+    <div class="modal" id="clientAuthModal" role="dialog" aria-modal="true" aria-labelledby="clientModalTitle">
         <div class="modal-box client-auth-box">
-
-            <button
-                class="modal-close"
-                id="closeClientAuth"
-                type="button"
-            >
-                ×
-            </button>
-
-            <div class="modal-icon">
-                👤
-            </div>
-
-            <h2>
-                KenaTech Client Portal
-            </h2>
-
-            <p>
-                Access your projects and progress.
-            </p>
-
-
+            <button class="modal-close" id="closeClientAuth" type="button" aria-label="Close client login">×</button>
+            <div class="modal-icon">👤</div>
+            <h2 id="clientModalTitle">KenaTech Client Portal</h2>
+            <p>Access your projects and progress.</p>
             <div class="auth-tabs">
-
-                <button
-                    class="auth-tab active"
-                    id="showClientLogin"
-                    type="button"
-                >
-                    Login
-                </button>
-
-                <button
-                    class="auth-tab"
-                    id="showClientRegister"
-                    type="button"
-                >
-                    Register
-                </button>
-
+                <button class="auth-tab active" id="showClientLogin" type="button">Login</button>
+                <button class="auth-tab" id="showClientRegister" type="button">Register</button>
             </div>
-
-
-            <form
-                id="clientLoginForm"
-                class="client-auth-form"
-            >
-
-                <input
-                    type="email"
-                    id="clientLoginEmail"
-                    placeholder="Email"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="clientLoginPassword"
-                    placeholder="Password"
-                    required
-                >
-
-                <button
-                    type="submit"
-                    class="btn-primary btn-full"
-                >
-                    Login to Portal
-                </button>
-
+            <form id="clientLoginForm" class="client-auth-form">
+                <input type="email" id="clientLoginEmail" placeholder="Email" autocomplete="email" required>
+                <input type="password" id="clientLoginPassword" placeholder="Password" autocomplete="current-password" required>
+                <button type="submit" class="btn-primary btn-full" id="clientLoginButton">Login to Portal</button>
             </form>
-
-
-            <form
-                id="clientRegisterForm"
-                class="client-auth-form hidden"
-            >
-
-                <input
-                    type="text"
-                    id="clientRegisterName"
-                    placeholder="Full Name"
-                    required
-                >
-
-                <input
-                    type="email"
-                    id="clientRegisterEmail"
-                    placeholder="Email"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="clientRegisterPassword"
-                    placeholder="Password"
-                    minlength="8"
-                    required
-                >
-
-                <button
-                    type="submit"
-                    class="btn-primary btn-full"
-                >
-                    Create Client Account
-                </button>
-
+            <form id="clientRegisterForm" class="client-auth-form hidden">
+                <input type="text" id="clientRegisterName" placeholder="Full Name" maxlength="120" autocomplete="name" required>
+                <input type="email" id="clientRegisterEmail" placeholder="Email" maxlength="180" autocomplete="email" required>
+                <input type="password" id="clientRegisterPassword" placeholder="Password (8+ characters)" minlength="8" autocomplete="new-password" required>
+                <button type="submit" class="btn-primary btn-full" id="clientRegisterButton">Create Client Account</button>
             </form>
-
-            <div id="clientAuthStatus"></div>
-
+            <div id="clientAuthStatus" class="status-message" aria-live="polite"></div>
         </div>
-
     </div>
 
-
-    <!-- CLIENT PORTAL -->
-
-    <div
-        class="client-panel"
-        id="clientPanel"
-    >
-
+    <div class="client-panel" id="clientPanel" aria-label="Client portal">
         <div class="admin-topbar">
-
-            <div>
-
-                <span class="section-label">
-                    KENATECH CLIENT SYSTEM
-                </span>
-
-                <h2>
-                    Client Portal
-                </h2>
-
-            </div>
-
-
+            <div><span class="section-label">KENATECH CLIENT SYSTEM</span><h2>Client Portal</h2></div>
             <div class="admin-top-actions">
-
-                <div class="admin-user">
-
-                    <span class="online-dot"></span>
-
-                    <div>
-
-                        <small>
-                            Signed in as
-                        </small>
-
-                        <strong id="clientIdentity">
-                            Client
-                        </strong>
-
-                    </div>
-
-                </div>
-
-                <button
-                    class="btn-secondary"
-                    id="logoutClient"
-                    type="button"
-                >
-                    Logout
-                </button>
-
+                <div class="admin-user"><span class="online-dot"></span><div><small>Signed in as</small><strong id="clientIdentity">Client</strong></div></div>
+                <button class="btn-secondary" id="logoutClient" type="button">Logout</button>
             </div>
-
         </div>
-
-
         <div class="client-container">
-
             <div class="client-welcome">
-
-                <span class="section-label">
-                    MY WORKSPACE
-                </span>
-
-                <h1 id="clientWelcomeTitle">
-                    Welcome to KenaTech
-                </h1>
-
-                <p>
-                    Track your active projects and development progress.
-                </p>
-
+                <span class="section-label">MY WORKSPACE</span>
+                <h1 id="clientWelcomeTitle">Welcome to KenaTech</h1>
+                <p>Track your active projects and development progress.</p>
             </div>
-
-
-            <div
-                id="clientProjectList"
-                class="client-project-grid"
-            ></div>
-
+            <div id="clientProjectList" class="client-project-grid"></div>
         </div>
-
     </div>
 
-
-    <!-- ADMIN DASHBOARD -->
-
-    <div
-        class="admin-panel"
-        id="adminPanel"
-    >
-
+    <div class="admin-panel" id="adminPanel" aria-label="KenaTech admin dashboard">
         <div class="admin-topbar">
-
-            <div>
-
-                <span class="section-label">
-                    KENATECH INTERNAL SYSTEM
-                </span>
-
-                <h2>
-                    CEO Dashboard
-                </h2>
-
-            </div>
-
-
+            <div><span class="section-label">KENATECH INTERNAL SYSTEM</span><h2>CEO Dashboard</h2></div>
             <div class="admin-top-actions">
-
-                <div class="admin-user">
-
-                    <span class="online-dot"></span>
-
-                    <div>
-
-                        <small>
-                            Signed in as
-                        </small>
-
-                        <strong id="adminIdentity">
-                            Admin
-                        </strong>
-
-                    </div>
-
-                </div>
-
-                <button
-                    class="btn-secondary"
-                    id="logoutAdmin"
-                    type="button"
-                >
-                    Logout
-                </button>
-
+                <div class="admin-user"><span class="online-dot"></span><div><small>Signed in as</small><strong id="adminIdentity">Admin</strong></div></div>
+                <button class="btn-secondary" id="logoutAdmin" type="button">Logout</button>
             </div>
-
         </div>
-
 
         <div class="admin-container">
-
-
-            <!-- STATS -->
-
             <div class="admin-stats-grid">
-
-                <div class="admin-stat">
-
-                    <div class="stat-icon">
-                        👥
-                    </div>
-
-                    <span>
-                        Total Leads
-                    </span>
-
-                    <strong id="totalLeads">
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div class="admin-stat">
-
-                    <div class="stat-icon">
-                        ✨
-                    </div>
-
-                    <span>
-                        New
-                    </span>
-
-                    <strong id="newLeads">
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div class="admin-stat">
-
-                    <div class="stat-icon">
-                        💬
-                    </div>
-
-                    <span>
-                        Contacted
-                    </span>
-
-                    <strong id="contactedLeads">
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div class="admin-stat">
-
-                    <div class="stat-icon">
-                        🏆
-                    </div>
-
-                    <span>
-                        Won
-                    </span>
-
-                    <strong id="wonLeads">
-                        0
-                    </strong>
-
-                </div>
-
+                <div class="admin-stat"><div class="stat-icon">👥</div><span>Total Leads</span><strong id="totalLeads">0</strong></div>
+                <div class="admin-stat"><div class="stat-icon">✨</div><span>New</span><strong id="newLeads">0</strong></div>
+                <div class="admin-stat"><div class="stat-icon">💬</div><span>Contacted</span><strong id="contactedLeads">0</strong></div>
+                <div class="admin-stat"><div class="stat-icon">🏆</div><span>Won</span><strong id="wonLeads">0</strong></div>
             </div>
-
-
-            <!-- LEADS -->
 
             <div class="leads-header">
-
-                <div>
-
-                    <span class="section-label">
-                        SALES PIPELINE
-                    </span>
-
-                    <h2>
-                        Incoming Proposals
-                    </h2>
-
-                    <p>
-                        Manage and track potential KenaTech clients.
-                    </p>
-
-                </div>
-
-
+                <div><span class="section-label">SALES PIPELINE</span><h2>Incoming Proposals</h2><p>Manage and track potential KenaTech clients.</p></div>
                 <div class="leads-header-actions">
-
-                    <button
-                        class="dashboard-button"
-                        id="refreshLeads"
-                        type="button"
-                    >
-                        ↻ Refresh
-                    </button>
-
-                    <button
-                        class="dashboard-button danger-outline"
-                        id="clearLeads"
-                        type="button"
-                    >
-                        Clear All
-                    </button>
-
+                    <button class="dashboard-button" id="refreshLeads" type="button">↻ Refresh</button>
+                    <button class="dashboard-button danger-outline" id="clearLeads" type="button">Clear All</button>
                 </div>
-
             </div>
-
 
             <div class="dashboard-toolbar">
-
-                <div class="search-box">
-
-                    <span>
-                        🔎
-                    </span>
-
-                    <input
-                        type="search"
-                        id="leadSearch"
-                        placeholder="Search name, email, project..."
-                    >
-
-                </div>
-
-
+                <div class="search-box"><span>🔎</span><input type="search" id="leadSearch" placeholder="Search name, email, project..."></div>
                 <select id="statusFilter">
-
-                    <option value="all">
-                        All Statuses
-                    </option>
-
-                    <option value="new">
-                        New
-                    </option>
-
-                    <option value="contacted">
-                        Contacted
-                    </option>
-
-                    <option value="won">
-                        Won
-                    </option>
-
+                    <option value="all">All Statuses</option>
+                    <option value="new">New</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="won">Won</option>
                 </select>
-
-
                 <select id="projectFilter">
-
-                    <option value="all">
-                        All Project Types
-                    </option>
-
-                    <option value="Website">
-                        Website
-                    </option>
-
-                    <option value="Web Application">
-                        Web Application
-                    </option>
-
-                    <option value="SaaS">
-                        SaaS Product
-                    </option>
-
-                    <option value="Mobile App">
-                        Mobile App
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
+                    <option value="all">All Project Types</option>
+                    <option value="Website">Website</option>
+                    <option value="Web Application">Web Application</option>
+                    <option value="SaaS">SaaS Product</option>
+                    <option value="Mobile App">Mobile App</option>
+                    <option value="Other">Other</option>
                 </select>
-
             </div>
 
-
-            <div class="dashboard-meta">
-
-                <span id="visibleLeadCount">
-                    0 proposals
-                </span>
-
-                <span id="lastSynced">
-                    Not synced yet
-                </span>
-
-            </div>
-
-
-            <div
-                id="leadList"
-                class="lead-grid"
-            ></div>
-
-
-            <!-- CLIENT PROJECT MANAGEMENT -->
+            <div class="dashboard-meta"><span id="visibleLeadCount">0 proposals</span><span id="lastSynced">Not synced yet</span></div>
+            <div id="leadList" class="lead-grid"></div>
 
             <div class="admin-project-section">
-
                 <div class="leads-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            CLIENT OPERATIONS
-                        </span>
-
-                        <h2>
-                            Client Projects
-                        </h2>
-
-                        <p>
-                            Create and manage projects visible in the client portal.
-                        </p>
-
-                    </div>
-
-                    <button
-                        class="dashboard-button"
-                        id="refreshAdminProjects"
-                        type="button"
-                    >
-                        ↻ Refresh Projects
-                    </button>
-
+                    <div><span class="section-label">CLIENT OPERATIONS</span><h2>Client Projects</h2><p>Create and manage projects visible in the client portal.</p></div>
+                    <button class="dashboard-button" id="refreshAdminProjects" type="button">↻ Refresh Projects</button>
                 </div>
 
-
-                <form
-                    id="adminProjectForm"
-                    class="admin-project-form"
-                >
-
-                    <select
-                        id="adminProjectClient"
-                        required
-                    >
-                        <option value="">
-                            Select Client
-                        </option>
+                <form id="adminProjectForm" class="admin-project-form">
+                    <select id="adminProjectClient" required><option value="">Select Client</option></select>
+                    <input type="text" id="adminProjectTitle" placeholder="Project title" maxlength="180" required>
+                    <select id="adminProjectType" required>
+                        <option value="">Project Type</option>
+                        <option value="Website">Website</option>
+                        <option value="Web Application">Web Application</option>
+                        <option value="SaaS">SaaS</option>
+                        <option value="Mobile App">Mobile App</option>
+                        <option value="Other">Other</option>
                     </select>
-
-
-                    <input
-                        type="text"
-                        id="adminProjectTitle"
-                        placeholder="Project title"
-                        required
-                    >
-
-
-                    <select
-                        id="adminProjectType"
-                        required
-                    >
-
-                        <option value="">
-                            Project Type
-                        </option>
-
-                        <option value="Website">
-                            Website
-                        </option>
-
-                        <option value="Web Application">
-                            Web Application
-                        </option>
-
-                        <option value="SaaS">
-                            SaaS
-                        </option>
-
-                        <option value="Mobile App">
-                            Mobile App
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-
-                    <textarea
-                        id="adminProjectDescription"
-                        rows="3"
-                        placeholder="Project description"
-                        required
-                    ></textarea>
-
-
-                    <button
-                        class="btn-primary"
-                        type="submit"
-                    >
-                        Create Project
-                    </button>
-
+                    <textarea id="adminProjectDescription" rows="3" placeholder="Project description" maxlength="4000" required></textarea>
+                    <button class="btn-primary" type="submit" id="createProjectButton">Create Project</button>
                 </form>
-
-                <div id="adminProjectStatus"></div>
-
-
-                <div
-                    id="adminProjectList"
-                    class="admin-project-grid"
-                ></div>
-
+                <div id="adminProjectStatus" class="status-message"></div>
+                <div id="adminProjectList" class="admin-project-grid"></div>
             </div>
-
         </div>
-
     </div>
 
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script src="script.js"></script>
-
 </body>
-
 </html>

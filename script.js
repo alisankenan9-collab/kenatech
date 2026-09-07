@@ -1,581 +1,323 @@
-const SUPABASE_URL =
-    "https://mcwlrxjnxmtqtsoaaysg.supabase.co";
+const SUPABASE_URL = "https://mcwlrxjnxmtqtsoaaysg.supabase.co";
+const SUPABASE_KEY = "sb_publishable_BEKzDtCnxnS6rk76XJ7xPw_mbCSe5Zq";
+const ADMIN_EMAIL = "alisankenan9@gmail.com";
 
-const SUPABASE_KEY =
-    "sb_publishable_BEKzDtCnxnS6rk76XJ7xPw_mbCSe5Zq";
-
-const ADMIN_EMAIL =
-    "alisankenan9@gmail.com";
-
-
-const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 class KenaTech {
-
     constructor() {
-
         this.leads = [];
-
-        this.adminProjects = [];
-
         this.clients = [];
-
+        this.adminProjects = [];
         this.init();
     }
 
-
     async init() {
-
         this.cacheElements();
-
         this.bindEvents();
-
         this.resetStats();
-
         await this.checkAuthSession();
     }
 
-
     cacheElements() {
+        this.leadForm = document.getElementById("leadForm");
+        this.formStatus = document.getElementById("formStatus");
+        this.leadSubmitButton = document.getElementById("leadSubmitButton");
 
-        /* PUBLIC */
+        this.openAdmin = document.getElementById("openAdmin");
+        this.adminLoginModal = document.getElementById("adminLoginModal");
+        this.closeLogin = document.getElementById("closeLogin");
+        this.loginForm = document.getElementById("loginForm");
+        this.loginStatus = document.getElementById("loginStatus");
+        this.adminLoginButton = document.getElementById("adminLoginButton");
+        this.adminPanel = document.getElementById("adminPanel");
+        this.logoutAdmin = document.getElementById("logoutAdmin");
+        this.adminIdentity = document.getElementById("adminIdentity");
 
-        this.leadForm =
-            document.getElementById(
-                "leadForm"
-            );
+        this.leadList = document.getElementById("leadList");
+        this.clearLeads = document.getElementById("clearLeads");
+        this.refreshLeads = document.getElementById("refreshLeads");
+        this.leadSearch = document.getElementById("leadSearch");
+        this.statusFilter = document.getElementById("statusFilter");
+        this.projectFilter = document.getElementById("projectFilter");
+        this.visibleLeadCount = document.getElementById("visibleLeadCount");
+        this.lastSynced = document.getElementById("lastSynced");
+        this.totalLeads = document.getElementById("totalLeads");
+        this.newLeads = document.getElementById("newLeads");
+        this.contactedLeads = document.getElementById("contactedLeads");
+        this.wonLeads = document.getElementById("wonLeads");
 
-        this.formStatus =
-            document.getElementById(
-                "formStatus"
-            );
+        this.openClientPortal = document.getElementById("openClientPortal");
+        this.clientAuthModal = document.getElementById("clientAuthModal");
+        this.closeClientAuth = document.getElementById("closeClientAuth");
+        this.showClientLogin = document.getElementById("showClientLogin");
+        this.showClientRegister = document.getElementById("showClientRegister");
+        this.clientLoginForm = document.getElementById("clientLoginForm");
+        this.clientRegisterForm = document.getElementById("clientRegisterForm");
+        this.clientAuthStatus = document.getElementById("clientAuthStatus");
+        this.clientLoginButton = document.getElementById("clientLoginButton");
+        this.clientRegisterButton = document.getElementById("clientRegisterButton");
 
+        this.clientPanel = document.getElementById("clientPanel");
+        this.clientIdentity = document.getElementById("clientIdentity");
+        this.clientWelcomeTitle = document.getElementById("clientWelcomeTitle");
+        this.clientProjectList = document.getElementById("clientProjectList");
+        this.logoutClient = document.getElementById("logoutClient");
 
-        /* ADMIN */
-
-        this.openAdmin =
-            document.getElementById(
-                "openAdmin"
-            );
-
-        this.adminLoginModal =
-            document.getElementById(
-                "adminLoginModal"
-            );
-
-        this.closeLogin =
-            document.getElementById(
-                "closeLogin"
-            );
-
-        this.loginForm =
-            document.getElementById(
-                "loginForm"
-            );
-
-        this.loginStatus =
-            document.getElementById(
-                "loginStatus"
-            );
-
-        this.adminPanel =
-            document.getElementById(
-                "adminPanel"
-            );
-
-        this.logoutAdmin =
-            document.getElementById(
-                "logoutAdmin"
-            );
-
-        this.adminIdentity =
-            document.getElementById(
-                "adminIdentity"
-            );
-
-
-        /* LEADS */
-
-        this.leadList =
-            document.getElementById(
-                "leadList"
-            );
-
-        this.clearLeads =
-            document.getElementById(
-                "clearLeads"
-            );
-
-        this.refreshLeads =
-            document.getElementById(
-                "refreshLeads"
-            );
-
-        this.leadSearch =
-            document.getElementById(
-                "leadSearch"
-            );
-
-        this.statusFilter =
-            document.getElementById(
-                "statusFilter"
-            );
-
-        this.projectFilter =
-            document.getElementById(
-                "projectFilter"
-            );
-
-        this.visibleLeadCount =
-            document.getElementById(
-                "visibleLeadCount"
-            );
-
-        this.lastSynced =
-            document.getElementById(
-                "lastSynced"
-            );
-
-        this.totalLeads =
-            document.getElementById(
-                "totalLeads"
-            );
-
-        this.newLeads =
-            document.getElementById(
-                "newLeads"
-            );
-
-        this.contactedLeads =
-            document.getElementById(
-                "contactedLeads"
-            );
-
-        this.wonLeads =
-            document.getElementById(
-                "wonLeads"
-            );
-
-
-        /* CLIENT AUTH */
-
-        this.openClientPortal =
-            document.getElementById(
-                "openClientPortal"
-            );
-
-        this.clientAuthModal =
-            document.getElementById(
-                "clientAuthModal"
-            );
-
-        this.closeClientAuth =
-            document.getElementById(
-                "closeClientAuth"
-            );
-
-        this.showClientLogin =
-            document.getElementById(
-                "showClientLogin"
-            );
-
-        this.showClientRegister =
-            document.getElementById(
-                "showClientRegister"
-            );
-
-        this.clientLoginForm =
-            document.getElementById(
-                "clientLoginForm"
-            );
-
-        this.clientRegisterForm =
-            document.getElementById(
-                "clientRegisterForm"
-            );
-
-        this.clientAuthStatus =
-            document.getElementById(
-                "clientAuthStatus"
-            );
-
-
-        /* CLIENT PANEL */
-
-        this.clientPanel =
-            document.getElementById(
-                "clientPanel"
-            );
-
-        this.clientIdentity =
-            document.getElementById(
-                "clientIdentity"
-            );
-
-        this.clientWelcomeTitle =
-            document.getElementById(
-                "clientWelcomeTitle"
-            );
-
-        this.clientProjectList =
-            document.getElementById(
-                "clientProjectList"
-            );
-
-        this.logoutClient =
-            document.getElementById(
-                "logoutClient"
-            );
-
-
-        /* ADMIN PROJECTS */
-
-        this.adminProjectForm =
-            document.getElementById(
-                "adminProjectForm"
-            );
-
-        this.adminProjectClient =
-            document.getElementById(
-                "adminProjectClient"
-            );
-
-        this.adminProjectStatus =
-            document.getElementById(
-                "adminProjectStatus"
-            );
-
-        this.adminProjectList =
-            document.getElementById(
-                "adminProjectList"
-            );
-
-        this.refreshAdminProjects =
-            document.getElementById(
-                "refreshAdminProjects"
-            );
+        this.adminProjectForm = document.getElementById("adminProjectForm");
+        this.adminProjectClient = document.getElementById("adminProjectClient");
+        this.adminProjectStatus = document.getElementById("adminProjectStatus");
+        this.adminProjectList = document.getElementById("adminProjectList");
+        this.refreshAdminProjects = document.getElementById("refreshAdminProjects");
+        this.createProjectButton = document.getElementById("createProjectButton");
     }
-
 
     bindEvents() {
+        this.leadForm?.addEventListener(
+            "submit",
+            (e) => this.submitLead(e)
+        );
 
-        /* PUBLIC */
+        this.openAdmin?.addEventListener(
+            "click",
+            () => this.handleAdminOpen()
+        );
 
-        if (this.leadForm) {
+        this.closeLogin?.addEventListener(
+            "click",
+            () => this.closeAdminLogin()
+        );
 
-            this.leadForm.addEventListener(
-                "submit",
-                (event) =>
-                    this.submitLead(event)
-            );
-        }
+        this.loginForm?.addEventListener(
+            "submit",
+            (e) => this.adminLogin(e)
+        );
 
+        this.logoutAdmin?.addEventListener(
+            "click",
+            () => this.logout()
+        );
 
-        /* ADMIN */
+        this.clearLeads?.addEventListener(
+            "click",
+            () => this.clearAllLeads()
+        );
 
-        if (this.openAdmin) {
+        this.refreshLeads?.addEventListener(
+            "click",
+            () => this.loadLeads()
+        );
 
-            this.openAdmin.addEventListener(
+        this.leadSearch?.addEventListener(
+            "input",
+            () => this.applyFilters()
+        );
+
+        this.statusFilter?.addEventListener(
+            "change",
+            () => this.applyFilters()
+        );
+
+        this.projectFilter?.addEventListener(
+            "change",
+            () => this.applyFilters()
+        );
+
+        this.openClientPortal?.addEventListener(
+            "click",
+            () => this.handleClientPortalOpen()
+        );
+
+        this.closeClientAuth?.addEventListener(
+            "click",
+            () => this.closeClientAuthModal()
+        );
+
+        this.showClientLogin?.addEventListener(
+            "click",
+            () => this.switchClientAuth("login")
+        );
+
+        this.showClientRegister?.addEventListener(
+            "click",
+            () => this.switchClientAuth("register")
+        );
+
+        this.clientLoginForm?.addEventListener(
+            "submit",
+            (e) => this.clientLogin(e)
+        );
+
+        this.clientRegisterForm?.addEventListener(
+            "submit",
+            (e) => this.clientRegister(e)
+        );
+
+        this.logoutClient?.addEventListener(
+            "click",
+            () => this.logout()
+        );
+
+        this.adminProjectForm?.addEventListener(
+            "submit",
+            (e) => this.createAdminProject(e)
+        );
+
+        this.refreshAdminProjects?.addEventListener(
+            "click",
+            () => this.loadAdminProjectArea()
+        );
+
+        [
+            this.adminLoginModal,
+            this.clientAuthModal
+        ].forEach((modal) => {
+            modal?.addEventListener(
                 "click",
-                () =>
-                    this.handleAdminOpen()
+                (event) => {
+                    if (event.target === modal) {
+                        modal === this.adminLoginModal
+                            ? this.closeAdminLogin()
+                            : this.closeClientAuthModal();
+                    }
+                }
             );
-        }
+        });
 
+        document.addEventListener(
+            "keydown",
+            (event) => {
+                if (event.key !== "Escape") {
+                    return;
+                }
 
-        if (this.closeLogin) {
+                if (
+                    this.adminLoginModal
+                        ?.classList
+                        .contains("show")
+                ) {
+                    this.closeAdminLogin();
+                }
 
-            this.closeLogin.addEventListener(
-                "click",
-                () =>
-                    this.closeAdminLogin()
-            );
-        }
-
-
-        if (this.loginForm) {
-
-            this.loginForm.addEventListener(
-                "submit",
-                (event) =>
-                    this.adminLogin(event)
-            );
-        }
-
-
-        if (this.logoutAdmin) {
-
-            this.logoutAdmin.addEventListener(
-                "click",
-                () =>
-                    this.logout()
-            );
-        }
-
-
-        /* LEADS */
-
-        if (this.clearLeads) {
-
-            this.clearLeads.addEventListener(
-                "click",
-                () =>
-                    this.clearAllLeads()
-            );
-        }
-
-
-        if (this.refreshLeads) {
-
-            this.refreshLeads.addEventListener(
-                "click",
-                () =>
-                    this.loadLeads()
-            );
-        }
-
-
-        if (this.leadSearch) {
-
-            this.leadSearch.addEventListener(
-                "input",
-                () =>
-                    this.applyFilters()
-            );
-        }
-
-
-        if (this.statusFilter) {
-
-            this.statusFilter.addEventListener(
-                "change",
-                () =>
-                    this.applyFilters()
-            );
-        }
-
-
-        if (this.projectFilter) {
-
-            this.projectFilter.addEventListener(
-                "change",
-                () =>
-                    this.applyFilters()
-            );
-        }
-
-
-        /* CLIENT */
-
-        if (this.openClientPortal) {
-
-            this.openClientPortal.addEventListener(
-                "click",
-                () =>
-                    this.handleClientPortalOpen()
-            );
-        }
-
-
-        if (this.closeClientAuth) {
-
-            this.closeClientAuth.addEventListener(
-                "click",
-                () =>
-                    this.closeClientAuthModal()
-            );
-        }
-
-
-        if (this.showClientLogin) {
-
-            this.showClientLogin.addEventListener(
-                "click",
-                () =>
-                    this.switchClientAuth(
-                        "login"
-                    )
-            );
-        }
-
-
-        if (this.showClientRegister) {
-
-            this.showClientRegister.addEventListener(
-                "click",
-                () =>
-                    this.switchClientAuth(
-                        "register"
-                    )
-            );
-        }
-
-
-        if (this.clientLoginForm) {
-
-            this.clientLoginForm.addEventListener(
-                "submit",
-                (event) =>
-                    this.clientLogin(event)
-            );
-        }
-
-
-        if (this.clientRegisterForm) {
-
-            this.clientRegisterForm.addEventListener(
-                "submit",
-                (event) =>
-                    this.clientRegister(event)
-            );
-        }
-
-
-        if (this.logoutClient) {
-
-            this.logoutClient.addEventListener(
-                "click",
-                () =>
-                    this.logout()
-            );
-        }
-
-
-        /* ADMIN PROJECTS */
-
-        if (this.adminProjectForm) {
-
-            this.adminProjectForm.addEventListener(
-                "submit",
-                (event) =>
-                    this.createAdminProject(
-                        event
-                    )
-            );
-        }
-
-
-        if (this.refreshAdminProjects) {
-
-            this.refreshAdminProjects.addEventListener(
-                "click",
-                () =>
-                    this.loadAdminProjectArea()
-            );
-        }
+                if (
+                    this.clientAuthModal
+                        ?.classList
+                        .contains("show")
+                ) {
+                    this.closeClientAuthModal();
+                }
+            }
+        );
     }
 
-
     async checkAuthSession() {
-
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
-
+        } = await supabaseClient.auth.getSession();
 
         if (
             error ||
             !data.session
         ) {
-
             return;
         }
 
+        const user = data.session.user;
 
-        const user =
-            data.session.user;
-
-
-        if (
-            this.isAdmin(user)
-        ) {
-
-            this.setAdminIdentity(
-                user
-            );
-
+        if (this.isAdmin(user)) {
+            this.setAdminIdentity(user);
         } else {
-
-            this.setClientIdentity(
-                user
-            );
+            this.setClientIdentity(user);
         }
     }
 
-
     isAdmin(user) {
-
-        return (
-            user &&
-            user.email &&
+        return Boolean(
+            user?.email &&
             user.email.toLowerCase() ===
-            ADMIN_EMAIL.toLowerCase()
+                ADMIN_EMAIL.toLowerCase()
         );
     }
 
+    setButtonLoading(
+        button,
+        loading,
+        loadingText,
+        normalText
+    ) {
+        if (!button) {
+            return;
+        }
 
-    /* =====================================
+        button.disabled = loading;
+        button.textContent =
+            loading
+                ? loadingText
+                : normalText;
+    }
+
+    setStatus(
+        element,
+        message,
+        type = "normal"
+    ) {
+        if (!element) {
+            return;
+        }
+
+        element.textContent = message;
+
+        element.style.color =
+            type === "success"
+                ? "#10b981"
+                : type === "error"
+                    ? "#ef4444"
+                    : "#94a3b8";
+    }
+
+    /* ==============================
        PUBLIC PROPOSAL
-    ===================================== */
-
+    ============================== */
 
     async submitLead(event) {
-
         event.preventDefault();
-
 
         const name =
             document
-                .getElementById(
-                    "clientName"
-                )
+                .getElementById("clientName")
                 .value
                 .trim();
-
 
         const email =
             document
-                .getElementById(
-                    "clientEmail"
-                )
+                .getElementById("clientEmail")
                 .value
-                .trim();
+                .trim()
+                .toLowerCase();
 
-
-        const type =
+        const projectType =
             document
-                .getElementById(
-                    "projectType"
-                )
+                .getElementById("projectType")
                 .value;
-
 
         const details =
             document
-                .getElementById(
-                    "projectDetails"
-                )
+                .getElementById("projectDetails")
                 .value
                 .trim();
-
 
         if (
             !name ||
             !email ||
-            !type ||
+            !projectType ||
             !details
         ) {
-
-            this.showFormStatus(
+            this.setStatus(
+                this.formStatus,
                 "Please complete all fields.",
                 "error"
             );
@@ -583,38 +325,47 @@ class KenaTech {
             return;
         }
 
-
-        this.showFormStatus(
-            "Sending proposal...",
-            "success"
+        this.setButtonLoading(
+            this.leadSubmitButton,
+            true,
+            "Sending...",
+            "Submit Proposal Request →"
         );
 
+        this.setStatus(
+            this.formStatus,
+            "Sending proposal..."
+        );
 
         const {
             error
-        } =
-            await supabaseClient
-                .from("leads")
-                .insert([
-                    {
-                        name: name,
-                        email: email,
-                        project_type: type,
-                        details: details,
-                        status: "new"
-                    }
-                ]);
+        } = await supabaseClient
+            .from("leads")
+            .insert([
+                {
+                    name,
+                    email,
+                    project_type: projectType,
+                    details,
+                    status: "new"
+                }
+            ]);
 
+        this.setButtonLoading(
+            this.leadSubmitButton,
+            false,
+            "Sending...",
+            "Submit Proposal Request →"
+        );
 
         if (error) {
-
             console.error(
-                "Insert error:",
+                "Lead insert error:",
                 error
             );
 
-
-            this.showFormStatus(
+            this.setStatus(
+                this.formStatus,
                 "Something went wrong. Please try again.",
                 "error"
             );
@@ -622,324 +373,219 @@ class KenaTech {
             return;
         }
 
-
         this.leadForm.reset();
 
-
-        this.showFormStatus(
+        this.setStatus(
+            this.formStatus,
             "✓ Proposal received. KenaTech will contact you soon.",
             "success"
         );
-    }
 
-
-    showFormStatus(
-        message,
-        type
-    ) {
-
-        if (
-            !this.formStatus
-        ) {
-            return;
-        }
-
-
-        this.formStatus.textContent =
-            message;
-
-
-        this.formStatus.style.color =
-            type === "success"
-                ? "#10b981"
-                : "#ef4444";
-
-
-        setTimeout(
-            () => {
-
-                this.formStatus.textContent =
-                    "";
-
-            },
+        window.setTimeout(
+            () => this.setStatus(
+                this.formStatus,
+                ""
+            ),
             5000
         );
     }
 
-
-    /* =====================================
+    /* ==============================
        ADMIN AUTH
-    ===================================== */
-
+    ============================== */
 
     async handleAdminOpen() {
-
         const {
             data
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
-
+        } = await supabaseClient.auth.getSession();
 
         if (
             data.session &&
-            this.isAdmin(
-                data.session.user
-            )
+            this.isAdmin(data.session.user)
         ) {
-
             await this.openDashboard();
-
             return;
         }
 
-
-        if (
-            data.session
-        ) {
-
-            await supabaseClient
-                .auth
-                .signOut();
+        if (data.session) {
+            await supabaseClient.auth.signOut();
         }
-
 
         this.openAdminLogin();
     }
 
-
     openAdminLogin() {
-
-        if (
-            !this.adminLoginModal
-        ) {
-            return;
-        }
-
-
         this.adminLoginModal
-            .classList
-            .add(
-                "show"
-            );
-
+            ?.classList
+            .add("show");
 
         document.body
             .classList
-            .add(
-                "modal-open"
-            );
-    }
+            .add("modal-open");
 
+        window.setTimeout(
+            () =>
+                document
+                    .getElementById("adminUsername")
+                    ?.focus(),
+            50
+        );
+    }
 
     closeAdminLogin() {
-
-        if (
-            this.adminLoginModal
-        ) {
-
-            this.adminLoginModal
-                .classList
-                .remove(
-                    "show"
-                );
-        }
-
+        this.adminLoginModal
+            ?.classList
+            .remove("show");
 
         document.body
             .classList
-            .remove(
-                "modal-open"
-            );
+            .remove("modal-open");
 
+        this.loginForm?.reset();
 
-        if (
-            this.loginStatus
-        ) {
-
-            this.loginStatus.textContent =
-                "";
-        }
-
-
-        if (
-            this.loginForm
-        ) {
-
-            this.loginForm.reset();
-        }
+        this.setStatus(
+            this.loginStatus,
+            ""
+        );
     }
 
-
     async adminLogin(event) {
-
         event.preventDefault();
-
 
         const email =
             document
-                .getElementById(
-                    "adminUsername"
-                )
+                .getElementById("adminUsername")
                 .value
-                .trim();
-
+                .trim()
+                .toLowerCase();
 
         const password =
             document
-                .getElementById(
-                    "adminPassword"
-                )
+                .getElementById("adminPassword")
                 .value;
 
+        this.setButtonLoading(
+            this.adminLoginButton,
+            true,
+            "Signing in...",
+            "Enter Dashboard"
+        );
 
-        this.loginStatus.textContent =
-            "Signing in...";
-
+        this.setStatus(
+            this.loginStatus,
+            "Signing in..."
+        );
 
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .auth
-                .signInWithPassword({
-                    email: email,
-                    password: password
-                });
+        } = await supabaseClient
+            .auth
+            .signInWithPassword({
+                email,
+                password
+            });
 
-
-        if (error) {
-
-            this.loginStatus.textContent =
-                "Incorrect email or password.";
-
-            return;
-        }
-
-
-        if (
-            !this.isAdmin(
-                data.user
-            )
-        ) {
-
-            await supabaseClient
-                .auth
-                .signOut();
-
-
-            this.loginStatus.textContent =
-                "This account is not an administrator.";
-
-            return;
-        }
-
-
-        this.setAdminIdentity(
-            data.user
+        this.setButtonLoading(
+            this.adminLoginButton,
+            false,
+            "Signing in...",
+            "Enter Dashboard"
         );
 
+        if (error) {
+            this.setStatus(
+                this.loginStatus,
+                this.authErrorMessage(error),
+                "error"
+            );
+
+            return;
+        }
+
+        if (!this.isAdmin(data.user)) {
+            await supabaseClient.auth.signOut();
+
+            this.setStatus(
+                this.loginStatus,
+                "This account is not an administrator.",
+                "error"
+            );
+
+            return;
+        }
+
+        this.setAdminIdentity(data.user);
 
         this.closeAdminLogin();
-
 
         await this.openDashboard();
     }
 
-
     setAdminIdentity(user) {
-
-        if (
-            this.adminIdentity
-        ) {
-
+        if (this.adminIdentity) {
             this.adminIdentity.textContent =
                 user?.email ||
                 "KenaTech Admin";
         }
     }
 
-
     async openDashboard() {
-
         const {
             data
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
-
+        } = await supabaseClient.auth.getSession();
 
         if (
             !data.session ||
-            !this.isAdmin(
-                data.session.user
-            )
+            !this.isAdmin(data.session.user)
         ) {
-
             this.openAdminLogin();
-
             return;
         }
 
+        this.setAdminIdentity(
+            data.session.user
+        );
 
         this.adminPanel
-            .classList
-            .add(
-                "show"
-            );
+            ?.classList
+            .add("show");
 
+        this.clientPanel
+            ?.classList
+            .remove("show");
 
         document.body
             .classList
-            .add(
-                "modal-open"
-            );
+            .add("modal-open");
 
-
-        await this.loadLeads();
-
-        await this.loadAdminProjectArea();
+        await Promise.all([
+            this.loadLeads(),
+            this.loadAdminProjectArea()
+        ]);
     }
 
-
-    /* =====================================
+    /* ==============================
        CLIENT AUTH
-    ===================================== */
-
+    ============================== */
 
     async handleClientPortalOpen() {
-
         const {
             data
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
-
+        } = await supabaseClient.auth.getSession();
 
         if (
             data.session &&
-            !this.isAdmin(
-                data.session.user
-            )
+            !this.isAdmin(data.session.user)
         ) {
-
             await this.openClientPanel();
-
             return;
         }
 
-
         if (
             data.session &&
-            this.isAdmin(
-                data.session.user
-            )
+            this.isAdmin(data.session.user)
         ) {
-
             alert(
                 "Admin is currently signed in. Logout from Admin Dashboard before using Client Portal."
             );
@@ -947,182 +593,168 @@ class KenaTech {
             return;
         }
 
-
         this.openClientAuthModal();
     }
 
-
     openClientAuthModal() {
-
         this.clientAuthModal
-            .classList
-            .add(
-                "show"
-            );
-
+            ?.classList
+            .add("show");
 
         document.body
             .classList
-            .add(
-                "modal-open"
-            );
+            .add("modal-open");
 
+        this.switchClientAuth("login");
 
-        this.switchClientAuth(
-            "login"
+        window.setTimeout(
+            () =>
+                document
+                    .getElementById("clientLoginEmail")
+                    ?.focus(),
+            50
         );
     }
 
-
     closeClientAuthModal() {
-
         this.clientAuthModal
-            .classList
-            .remove(
-                "show"
-            );
-
+            ?.classList
+            .remove("show");
 
         document.body
             .classList
-            .remove(
-                "modal-open"
-            );
+            .remove("modal-open");
 
-
-        this.clientAuthStatus.textContent =
-            "";
+        this.setStatus(
+            this.clientAuthStatus,
+            ""
+        );
     }
-
 
     switchClientAuth(mode) {
-
         const loginMode =
-            mode ===
-            "login";
-
+            mode === "login";
 
         this.clientLoginForm
-            .classList
+            ?.classList
             .toggle(
                 "hidden",
                 !loginMode
             );
-
 
         this.clientRegisterForm
-            .classList
+            ?.classList
             .toggle(
                 "hidden",
                 loginMode
             );
 
-
         this.showClientLogin
-            .classList
+            ?.classList
             .toggle(
                 "active",
                 loginMode
             );
 
-
         this.showClientRegister
-            .classList
+            ?.classList
             .toggle(
                 "active",
                 !loginMode
             );
 
-
-        this.clientAuthStatus.textContent =
-            "";
+        this.setStatus(
+            this.clientAuthStatus,
+            ""
+        );
     }
 
-
     async clientRegister(event) {
-
         event.preventDefault();
-
 
         const fullName =
             document
-                .getElementById(
-                    "clientRegisterName"
-                )
+                .getElementById("clientRegisterName")
                 .value
                 .trim();
-
 
         const email =
             document
-                .getElementById(
-                    "clientRegisterEmail"
-                )
+                .getElementById("clientRegisterEmail")
                 .value
-                .trim();
-
+                .trim()
+                .toLowerCase();
 
         const password =
             document
-                .getElementById(
-                    "clientRegisterPassword"
-                )
+                .getElementById("clientRegisterPassword")
                 .value;
 
-
-        this.setClientAuthStatus(
-            "Creating account...",
-            "normal"
-        );
-
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .auth
-                .signUp({
-
-                    email: email,
-
-                    password: password,
-
-                    options: {
-
-                        data: {
-
-                            full_name:
-                                fullName
-                        }
-                    }
-                });
-
-
-        if (error) {
-
-            console.error(
-                error
-            );
-
-
-            this.setClientAuthStatus(
-                error.message,
+        if (password.length < 8) {
+            this.setStatus(
+                this.clientAuthStatus,
+                "Password must be at least 8 characters.",
                 "error"
             );
 
             return;
         }
 
+        this.setButtonLoading(
+            this.clientRegisterButton,
+            true,
+            "Creating account...",
+            "Create Client Account"
+        );
 
-        this.clientRegisterForm
-            .reset();
+        this.setStatus(
+            this.clientAuthStatus,
+            "Creating account..."
+        );
 
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .auth
+            .signUp({
+                email,
+                password,
+                options: {
+                    data: {
+                        full_name: fullName
+                    }
+                }
+            });
 
-        if (
-            data.session
-        ) {
+        this.setButtonLoading(
+            this.clientRegisterButton,
+            false,
+            "Creating account...",
+            "Create Client Account"
+        );
 
+        if (error) {
+            console.error(
+                "Client registration error:",
+                error
+            );
+
+            const message =
+                this.authErrorMessage(error);
+
+            this.setStatus(
+                this.clientAuthStatus,
+                message,
+                "error"
+            );
+
+            return;
+        }
+
+        this.clientRegisterForm.reset();
+
+        if (data.session) {
             this.closeClientAuthModal();
 
             await this.openClientPanel();
@@ -1130,79 +762,72 @@ class KenaTech {
             return;
         }
 
-
-        this.setClientAuthStatus(
-            "✓ Account created. Check your email to confirm your account, then login.",
+        this.setStatus(
+            this.clientAuthStatus,
+            "✓ Account created. Confirm the email sent by KenaTech, then use Login.",
             "success"
         );
     }
 
-
     async clientLogin(event) {
-
         event.preventDefault();
-
 
         const email =
             document
-                .getElementById(
-                    "clientLoginEmail"
-                )
+                .getElementById("clientLoginEmail")
                 .value
-                .trim();
-
+                .trim()
+                .toLowerCase();
 
         const password =
             document
-                .getElementById(
-                    "clientLoginPassword"
-                )
+                .getElementById("clientLoginPassword")
                 .value;
 
-
-        this.setClientAuthStatus(
+        this.setButtonLoading(
+            this.clientLoginButton,
+            true,
             "Signing in...",
-            "normal"
+            "Login to Portal"
         );
 
+        this.setStatus(
+            this.clientAuthStatus,
+            "Signing in..."
+        );
 
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .auth
-                .signInWithPassword({
+        } = await supabaseClient
+            .auth
+            .signInWithPassword({
+                email,
+                password
+            });
 
-                    email: email,
-
-                    password: password
-                });
-
+        this.setButtonLoading(
+            this.clientLoginButton,
+            false,
+            "Signing in...",
+            "Login to Portal"
+        );
 
         if (error) {
-
-            this.setClientAuthStatus(
-                "Incorrect email or password.",
+            this.setStatus(
+                this.clientAuthStatus,
+                this.authErrorMessage(error),
                 "error"
             );
 
             return;
         }
 
+        if (this.isAdmin(data.user)) {
+            await supabaseClient.auth.signOut();
 
-        if (
-            this.isAdmin(
-                data.user
-            )
-        ) {
-
-            await supabaseClient
-                .auth
-                .signOut();
-
-
-            this.setClientAuthStatus(
+            this.setStatus(
+                this.clientAuthStatus,
                 "Admin account cannot use Client Portal.",
                 "error"
             );
@@ -1210,261 +835,207 @@ class KenaTech {
             return;
         }
 
-
-        this.clientLoginForm
-            .reset();
-
+        this.clientLoginForm.reset();
 
         this.closeClientAuthModal();
-
 
         await this.openClientPanel();
     }
 
-
-    setClientAuthStatus(
-        message,
-        type
-    ) {
-
-        this.clientAuthStatus.textContent =
-            message;
-
+    authErrorMessage(error) {
+        const raw =
+            String(
+                error?.message ||
+                ""
+            ).toLowerCase();
 
         if (
-            type ===
-            "success"
+            raw.includes(
+                "email not confirmed"
+            )
         ) {
-
-            this.clientAuthStatus.style.color =
-                "#10b981";
-
-        } else if (
-            type ===
-            "error"
-        ) {
-
-            this.clientAuthStatus.style.color =
-                "#ef4444";
-
-        } else {
-
-            this.clientAuthStatus.style.color =
-                "#94a3b8";
+            return "Please confirm your email before signing in.";
         }
+
+        if (
+            raw.includes(
+                "rate limit"
+            )
+        ) {
+            return "Email limit reached. Wait a little and try again, or use an existing account.";
+        }
+
+        if (
+            raw.includes(
+                "already registered"
+            ) ||
+            raw.includes(
+                "already been registered"
+            )
+        ) {
+            return "This email is already registered. Use Login instead.";
+        }
+
+        if (
+            raw.includes(
+                "invalid login credentials"
+            )
+        ) {
+            return "Incorrect email or password.";
+        }
+
+        if (
+            raw.includes(
+                "password"
+            )
+        ) {
+            return error.message;
+        }
+
+        return (
+            error?.message ||
+            "Authentication failed. Please try again."
+        );
     }
 
-
     async openClientPanel() {
-
         const {
             data
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
+        } = await supabaseClient.auth.getSession();
 
-
-        if (
-            !data.session
-        ) {
-
+        if (!data.session) {
             this.openClientAuthModal();
-
             return;
         }
-
 
         if (
             this.isAdmin(
                 data.session.user
             )
         ) {
-
             return;
         }
-
 
         this.setClientIdentity(
             data.session.user
         );
 
-
         this.clientPanel
-            .classList
-            .add(
-                "show"
-            );
+            ?.classList
+            .add("show");
 
+        this.adminPanel
+            ?.classList
+            .remove("show");
 
         document.body
             .classList
-            .add(
-                "modal-open"
-            );
+            .add("modal-open");
 
-
-        await this.loadClientProfile();
-
-        await this.loadClientProjects();
+        await Promise.all([
+            this.loadClientProfile(),
+            this.loadClientProjects()
+        ]);
     }
 
-
     setClientIdentity(user) {
-
-        if (
-            this.clientIdentity
-        ) {
-
+        if (this.clientIdentity) {
             this.clientIdentity.textContent =
                 user?.email ||
                 "Client";
         }
     }
 
-
     async loadClientProfile() {
-
         const {
-            data:
-                sessionData
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
+            data: sessionData
+        } = await supabaseClient.auth.getSession();
 
-
-        if (
-            !sessionData.session
-        ) {
-
+        if (!sessionData.session) {
             return;
         }
-
 
         const user =
             sessionData.session.user;
 
-
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .from("profiles")
-                .select(
-                    "full_name,email"
-                )
-                .eq(
-                    "id",
-                    user.id
-                )
-                .maybeSingle();
-
+        } = await supabaseClient
+            .from("profiles")
+            .select("full_name,email")
+            .eq(
+                "id",
+                user.id
+            )
+            .maybeSingle();
 
         if (error) {
-
             console.error(
                 "Profile error:",
                 error
             );
-
-            return;
         }
 
+        const name =
+            data?.full_name ||
+            user.user_metadata?.full_name ||
+            user.email;
 
-        if (
-            this.clientWelcomeTitle
-        ) {
-
-            const name =
-                data?.full_name ||
-                user.email;
-
-
+        if (this.clientWelcomeTitle) {
             this.clientWelcomeTitle.textContent =
                 `Welcome, ${name}`;
         }
     }
 
-
     async loadClientProjects() {
-
-        if (
-            !this.clientProjectList
-        ) {
-
+        if (!this.clientProjectList) {
             return;
         }
 
-
-        this.clientProjectList.innerHTML = `
-            <div class="empty-leads">
-                Loading projects...
-            </div>
-        `;
-
+        this.clientProjectList.innerHTML =
+            this.loadingCard(
+                "Loading projects..."
+            );
 
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .from("projects")
-                .select("*")
-                .order(
-                    "created_at",
-                    {
-                        ascending:
-                            false
-                    }
-                );
-
+        } = await supabaseClient
+            .from("projects")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
         if (error) {
-
             console.error(
                 "Client projects error:",
                 error
             );
 
-
-            this.clientProjectList.innerHTML = `
-                <div class="empty-leads">
-                    Unable to load projects.
-                </div>
-            `;
-
-            return;
-        }
-
-
-        if (
-            !data ||
-            data.length === 0
-        ) {
-
-            this.clientProjectList.innerHTML = `
-                <div class="empty-leads">
-
-                    <div style="font-size:40px">
-                        📁
-                    </div>
-
-                    <h3>
-                        No projects yet
-                    </h3>
-
-                    <p>
-                        Your KenaTech projects will appear here after they are created by the team.
-                    </p>
-
-                </div>
-            `;
+            this.clientProjectList.innerHTML =
+                this.emptyCard(
+                    "Unable to load projects.",
+                    "⚠️"
+                );
 
             return;
         }
 
+        if (!data?.length) {
+            this.clientProjectList.innerHTML =
+                this.emptyCard(
+                    "No projects yet",
+                    "📁",
+                    "Your KenaTech projects will appear here after they are created by the team."
+                );
+
+            return;
+        }
 
         this.clientProjectList.innerHTML =
             data
@@ -1477,41 +1048,32 @@ class KenaTech {
                 .join("");
     }
 
-
-    createClientProjectCard(
-        project
-    ) {
-
+    createClientProjectCard(project) {
         const status =
             project.status ||
             "planning";
 
-
         const progress =
-            Number(
+            this.clampProgress(
                 project.progress
-            ) || 0;
-
+            );
 
         return `
-            <article
-                class="client-project-card"
-            >
+            <article class="client-project-card">
 
-                <div
-                    class="project-card-header"
-                >
+                <div class="project-card-header">
 
                     <div>
 
-                        <span
-                            class="status status-${this.escapeHTML(status)}"
-                        >
+                        <span class="status status-${this.escapeHTML(status)}">
                             ${this.escapeHTML(status)}
                         </span>
 
                         <h2>
-                            ${this.escapeHTML(project.title)}
+                            ${this.escapeHTML(
+                                project.title ||
+                                "Project"
+                            )}
                         </h2>
 
                         <p>
@@ -1523,35 +1085,27 @@ class KenaTech {
 
                     </div>
 
-
-                    <span
-                        class="lead-date"
-                    >
+                    <span class="lead-date">
                         Updated
                         ${this.formatDate(
-                            project.updated_at
+                            project.updated_at ||
+                            project.created_at
                         )}
                     </span>
 
                 </div>
 
-
-                <p
-                    class="project-description"
-                >
+                <p class="project-description">
                     ${this.escapeHTML(
                         project.description ||
                         ""
                     )}
                 </p>
 
-
-                <div
-                    class="client-project-meta"
-                >
+                <div class="client-project-meta">
 
                     <span>
-                        Project #${project.id}
+                        Project #${Number(project.id) || ""}
                     </span>
 
                     <span>
@@ -1563,10 +1117,7 @@ class KenaTech {
 
                 </div>
 
-
-                <div
-                    class="progress-head"
-                >
+                <div class="progress-head">
 
                     <strong>
                         Development Progress
@@ -1578,10 +1129,7 @@ class KenaTech {
 
                 </div>
 
-
-                <div
-                    class="progress-track"
-                >
+                <div class="progress-track">
 
                     <div
                         class="progress-bar"
@@ -1594,125 +1142,102 @@ class KenaTech {
         `;
     }
 
-
-    /* =====================================
-       ADMIN LEADS
-    ===================================== */
-
+    /* ==============================
+       LEADS
+    ============================== */
 
     async loadLeads() {
+        if (!this.leadList) {
+            return;
+        }
 
-        this.showLoading();
-
+        this.leadList.innerHTML =
+            this.loadingCard(
+                "Loading proposals..."
+            );
 
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .from("leads")
-                .select("*")
-                .order(
-                    "created_at",
-                    {
-                        ascending:
-                            false
-                    }
-                );
-
+        } = await supabaseClient
+            .from("leads")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
         if (error) {
-
             console.error(
+                "Leads error:",
                 error
             );
 
-
-            this.showDashboardError(
-                "Unable to load proposals."
-            );
+            this.leadList.innerHTML =
+                this.emptyCard(
+                    "Unable to load proposals.",
+                    "⚠️"
+                );
 
             return;
         }
 
-
         this.leads =
-            data || [];
+            data ||
+            [];
 
-
-        this.updateStats(
-            this.leads
-        );
-
+        this.updateStats();
 
         this.updateSyncTime();
-
 
         this.applyFilters();
     }
 
-
     applyFilters() {
-
         let filtered =
             [
                 ...this.leads
             ];
 
-
         const search =
             this.leadSearch
-                ? this.leadSearch
-                    .value
-                    .trim()
-                    .toLowerCase()
-                : "";
-
+                ?.value
+                .trim()
+                .toLowerCase() ||
+            "";
 
         const status =
             this.statusFilter
-                ? this.statusFilter.value
-                : "all";
-
+                ?.value ||
+            "all";
 
         const project =
             this.projectFilter
-                ? this.projectFilter.value
-                : "all";
+                ?.value ||
+            "all";
 
-
-        if (
-            search
-        ) {
-
+        if (search) {
             filtered =
                 filtered.filter(
-                    (lead) => {
-
-                        const value =
-                            [
-                                lead.name,
-                                lead.email,
-                                lead.project_type,
-                                lead.details
-                            ]
-                                .join(" ")
-                                .toLowerCase();
-
-
-                        return value.includes(
-                            search
-                        );
-                    }
+                    (lead) =>
+                        [
+                            lead.name,
+                            lead.email,
+                            lead.project_type,
+                            lead.details
+                        ]
+                            .join(" ")
+                            .toLowerCase()
+                            .includes(search)
                 );
         }
-
 
         if (
             status !==
             "all"
         ) {
-
             filtered =
                 filtered.filter(
                     (lead) =>
@@ -1721,12 +1246,10 @@ class KenaTech {
                 );
         }
 
-
         if (
             project !==
             "all"
         ) {
-
             filtered =
                 filtered.filter(
                     (lead) =>
@@ -1735,58 +1258,35 @@ class KenaTech {
                 );
         }
 
-
         this.renderLeads(
             filtered
         );
 
-
-        this.updateVisibleCount(
-            filtered.length
-        );
+        if (this.visibleLeadCount) {
+            this.visibleLeadCount.textContent =
+                `${filtered.length} proposal${
+                    filtered.length === 1
+                        ? ""
+                        : "s"
+                }`;
+        }
     }
 
-
     renderLeads(leads) {
-
-        if (
-            !this.leadList
-        ) {
-
+        if (!this.leadList) {
             return;
         }
 
-
-        if (
-            leads.length === 0
-        ) {
-
-            this.leadList.innerHTML = `
-                <div class="empty-leads">
-
-                    <div
-                        style="
-                            font-size:40px;
-                            margin-bottom:10px;
-                        "
-                    >
-                        📭
-                    </div>
-
-                    <h3>
-                        No proposals found
-                    </h3>
-
-                    <p>
-                        No leads match the current filters.
-                    </p>
-
-                </div>
-            `;
+        if (!leads.length) {
+            this.leadList.innerHTML =
+                this.emptyCard(
+                    "No proposals found",
+                    "📭",
+                    "No leads match the current filters."
+                );
 
             return;
         }
-
 
         this.leadList.innerHTML =
             leads
@@ -1798,33 +1298,33 @@ class KenaTech {
                 )
                 .join("");
 
-
         this.attachLeadButtons();
     }
 
-
     createLeadCard(lead) {
-
         const status =
             lead.status ||
             "new";
 
-
         const email =
             this.escapeHTML(
-                lead.email
+                lead.email ||
+                ""
             );
 
+        const mailto =
+            encodeURIComponent(
+                lead.email ||
+                ""
+            );
 
         return `
             <article
                 class="lead-card"
-                data-id="${lead.id}"
+                data-id="${Number(lead.id)}"
             >
 
-                <div
-                    class="lead-card-top"
-                >
+                <div class="lead-card-top">
 
                     <span
                         class="status status-${this.escapeHTML(status)}"
@@ -1832,9 +1332,7 @@ class KenaTech {
                         ${this.escapeHTML(status)}
                     </span>
 
-                    <span
-                        class="lead-date"
-                    >
+                    <span class="lead-date">
                         ${this.formatDate(
                             lead.created_at
                         )}
@@ -1842,49 +1340,37 @@ class KenaTech {
 
                 </div>
 
-
                 <h3>
                     ${this.escapeHTML(
-                        lead.name
+                        lead.name ||
+                        "Unknown"
                     )}
                 </h3>
 
-
-                <div
-                    class="lead-email"
-                >
+                <div class="lead-email">
                     ${email}
                 </div>
 
-
-                <span
-                    class="lead-type"
-                >
+                <span class="lead-type">
                     ${this.escapeHTML(
                         lead.project_type ||
                         "Other"
                     )}
                 </span>
 
-
-                <div
-                    class="lead-details"
-                >
+                <div class="lead-details">
                     ${this.escapeHTML(
                         lead.details ||
                         ""
                     )}
                 </div>
 
-
-                <div
-                    class="lead-actions"
-                >
+                <div class="lead-actions">
 
                     <button
                         class="status-btn"
                         data-action="status"
-                        data-id="${lead.id}"
+                        data-id="${Number(lead.id)}"
                         type="button"
                     >
                         ${this.getNextStatusLabel(
@@ -1892,29 +1378,26 @@ class KenaTech {
                         )}
                     </button>
 
-
                     <button
                         class="status-btn"
                         data-action="analyze"
-                        data-id="${lead.id}"
+                        data-id="${Number(lead.id)}"
                         type="button"
                     >
                         ✨ Smart Analyze
                     </button>
 
-
                     <a
                         class="email-btn"
-                        href="mailto:${email}"
+                        href="mailto:${mailto}"
                     >
                         Email Client
                     </a>
 
-
                     <button
                         class="delete-btn"
                         data-action="delete"
-                        data-id="${lead.id}"
+                        data-id="${Number(lead.id)}"
                         type="button"
                     >
                         Delete
@@ -1922,317 +1405,215 @@ class KenaTech {
 
                 </div>
 
-
                 <div
-                    id="analysis-${lead.id}"
+                    id="analysis-${Number(lead.id)}"
                 ></div>
 
             </article>
         `;
     }
 
-
-    getNextStatusLabel(
-        status
-    ) {
-
+    getNextStatusLabel(status) {
         if (
             status ===
             "new"
         ) {
-
             return "Mark Contacted";
         }
-
 
         if (
             status ===
             "contacted"
         ) {
-
             return "Mark Won";
         }
-
 
         return "Reset Status";
     }
 
-
     attachLeadButtons() {
+        this.leadList
+            ?.querySelectorAll(
+                "button[data-action]"
+            )
+            .forEach(
+                (button) => {
+                    button.addEventListener(
+                        "click",
+                        async () => {
+                            const id =
+                                Number(
+                                    button.dataset.id
+                                );
 
-        const buttons =
-            this.leadList
-                .querySelectorAll(
-                    "button[data-action]"
-                );
+                            if (
+                                button.dataset.action ===
+                                "delete"
+                            ) {
+                                await this.deleteLead(
+                                    id
+                                );
+                            }
 
+                            if (
+                                button.dataset.action ===
+                                "status"
+                            ) {
+                                await this.nextStatus(
+                                    id
+                                );
+                            }
 
-        buttons.forEach(
-            (button) => {
-
-                button.addEventListener(
-                    "click",
-                    async () => {
-
-                        const id =
-                            Number(
-                                button
-                                    .dataset
-                                    .id
-                            );
-
-
-                        const action =
-                            button
-                                .dataset
-                                .action;
-
-
-                        if (
-                            action ===
-                            "delete"
-                        ) {
-
-                            await this.deleteLead(
-                                id
-                            );
+                            if (
+                                button.dataset.action ===
+                                "analyze"
+                            ) {
+                                this.analyzeLead(
+                                    id
+                                );
+                            }
                         }
-
-
-                        if (
-                            action ===
-                            "status"
-                        ) {
-
-                            await this.nextStatus(
-                                id
-                            );
-                        }
-
-
-                        if (
-                            action ===
-                            "analyze"
-                        ) {
-
-                            this.analyzeLead(
-                                id
-                            );
-                        }
-                    }
-                );
-            }
-        );
+                    );
+                }
+            );
     }
 
-
-    /* =====================================
-       SMART PROPOSAL ANALYZER
-    ===================================== */
-
+    /* ==============================
+       SMART ANALYZE
+    ============================== */
 
     analyzeLead(id) {
-
         const lead =
             this.leads.find(
                 (item) =>
                     item.id === id
             );
 
-
-        if (
-            !lead
-        ) {
-
-            return;
-        }
-
-
-        const analysis =
-            this.generateSmartAnalysis(
-                lead
-            );
-
-
         const container =
             document.getElementById(
                 `analysis-${id}`
             );
 
-
         if (
+            !lead ||
             !container
         ) {
-
             return;
         }
 
-
         if (
-            container.innerHTML.trim() !==
-            ""
+            container
+                .innerHTML
+                .trim()
         ) {
-
             container.innerHTML =
                 "";
 
             return;
         }
 
+        const analysis =
+            this.generateSmartAnalysis(
+                lead
+            );
 
         container.innerHTML = `
-            <div
-                style="
-                    margin-top:18px;
-                    padding:18px;
-                    border-radius:14px;
-                    border:1px solid rgba(96,165,250,0.22);
-                    background:rgba(2,6,23,0.85);
-                "
-            >
+            <div class="analysis-box">
 
-                <div
-                    style="
-                        color:#60a5fa;
-                        font-size:11px;
-                        font-weight:800;
-                        letter-spacing:1.5px;
-                        margin-bottom:10px;
-                    "
-                >
+                <div class="analysis-title">
                     ✨ KENATECH SMART ANALYSIS
                 </div>
 
-
-                <div
-                    style="
-                        display:grid;
-                        gap:10px;
-                        font-size:13px;
-                    "
-                >
+                <div class="analysis-grid">
 
                     <div>
                         <strong>
                             Project:
                         </strong>
 
-                        <span
-                            style="
-                                color:#94a3b8;
-                            "
-                        >
+                        <span>
                             ${this.escapeHTML(
                                 analysis.project
                             )}
                         </span>
                     </div>
 
-
                     <div>
                         <strong>
                             Complexity:
                         </strong>
 
-                        <span
-                            style="
-                                color:#94a3b8;
-                            "
-                        >
+                        <span>
                             ${this.escapeHTML(
                                 analysis.complexity
                             )}
                         </span>
                     </div>
 
-
                     <div>
                         <strong>
                             Priority:
                         </strong>
 
-                        <span
-                            style="
-                                color:#94a3b8;
-                            "
-                        >
+                        <span>
                             ${this.escapeHTML(
                                 analysis.priority
                             )}
                         </span>
                     </div>
 
-
                     <div>
                         <strong>
                             Estimated Scope:
                         </strong>
 
-                        <span
-                            style="
-                                color:#94a3b8;
-                            "
-                        >
+                        <span>
                             ${this.escapeHTML(
                                 analysis.scope
                             )}
                         </span>
                     </div>
 
-
                     <div>
+
                         <strong>
                             Suggested Technologies:
                         </strong>
 
-                        <div
-                            style="
-                                color:#60a5fa;
-                                margin-top:4px;
-                            "
-                        >
+                        <div>
                             ${this.escapeHTML(
                                 analysis.technologies
                             )}
                         </div>
+
                     </div>
 
-
                     <div>
+
                         <strong>
                             Recommended Action:
                         </strong>
 
-                        <div
-                            style="
-                                color:#94a3b8;
-                                margin-top:4px;
-                                line-height:1.6;
-                            "
-                        >
+                        <div>
                             ${this.escapeHTML(
                                 analysis.action
                             )}
                         </div>
+
                     </div>
 
-
                     <div>
+
                         <strong>
                             Questions for Client:
                         </strong>
 
-                        <div
-                            style="
-                                color:#94a3b8;
-                                margin-top:4px;
-                                line-height:1.6;
-                            "
-                        >
+                        <div>
                             ${this.escapeHTML(
                                 analysis.questions
                             )}
                         </div>
+
                     </div>
 
                 </div>
@@ -2241,329 +1622,267 @@ class KenaTech {
         `;
     }
 
-
     generateSmartAnalysis(lead) {
-
         const text =
             `${lead.project_type || ""} ${lead.details || ""}`
                 .toLowerCase();
 
-
         let complexity =
             "Medium";
-
 
         let priority =
             "Normal";
 
-
         let scope =
             "Medium-size digital project";
 
-
         let technologies =
-            "HTML, CSS, JavaScript, Supabase";
-
+            [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "Supabase"
+            ];
 
         let action =
             "Contact the client and clarify the full project requirements before preparing the proposal.";
 
-
         let questions =
             "Ask about deadline, budget, required pages/features and preferred design style.";
-
-
-        /* WEBSITE */
 
         if (
             lead.project_type ===
             "Website"
         ) {
-
             technologies =
-                "HTML, CSS, JavaScript, Supabase, Vercel";
-
+                [
+                    "HTML",
+                    "CSS",
+                    "JavaScript",
+                    "Supabase",
+                    "Vercel"
+                ];
 
             scope =
                 "Business website / landing experience";
 
-
             questions =
                 "Ask how many pages are needed, whether they already have a design, and whether they need a CMS or admin panel.";
-        }
 
-
-        /* WEB APPLICATION */
-
-        if (
+        } else if (
             lead.project_type ===
             "Web Application"
         ) {
-
             complexity =
                 "Medium–High";
 
-
             technologies =
-                "JavaScript, Supabase Auth, PostgreSQL, APIs, Vercel";
-
+                [
+                    "JavaScript",
+                    "Supabase Auth",
+                    "PostgreSQL",
+                    "APIs",
+                    "Vercel"
+                ];
 
             scope =
                 "Interactive web application with backend functionality";
 
-
             questions =
                 "Ask which user roles are required, what data should be stored and what the main application workflow is.";
-        }
 
-
-        /* SAAS */
-
-        if (
+        } else if (
             lead.project_type ===
             "SaaS"
         ) {
-
             complexity =
                 "High";
 
-
             technologies =
-                "JavaScript, Supabase, PostgreSQL, Auth, Edge Functions, SaaS architecture";
-
+                [
+                    "JavaScript",
+                    "Supabase",
+                    "PostgreSQL",
+                    "Auth",
+                    "Edge Functions",
+                    "SaaS architecture"
+                ];
 
             scope =
                 "Multi-user SaaS product";
 
-
             action =
                 "Schedule a requirements discussion and define the MVP before development begins.";
 
-
             questions =
                 "Ask who the target users are, what the core MVP feature is, whether subscriptions are required and which user roles are needed.";
-        }
 
-
-        /* MOBILE */
-
-        if (
+        } else if (
             lead.project_type ===
             "Mobile App"
         ) {
-
             complexity =
                 "High";
 
-
             technologies =
-                "React Native or Flutter, Supabase, Authentication, APIs";
-
+                [
+                    "React Native or Flutter",
+                    "Supabase",
+                    "Authentication",
+                    "APIs"
+                ];
 
             scope =
                 "Mobile application with backend services";
-
 
             questions =
                 "Ask whether the app is for Android, iOS or both, what the main screens are and whether push notifications are required.";
         }
 
-
-        /* ECOMMERCE */
-
         if (
-            text.includes(
-                "shop"
+            (
+                text.includes("shop") ||
+                text.includes("store") ||
+                text.includes("ecommerce") ||
+                text.includes("e-commerce")
             ) ||
-            text.includes(
-                "store"
-            ) ||
-            text.includes(
-                "ecommerce"
-            ) ||
-            text.includes(
-                "e-commerce"
-            ) ||
-            text.includes(
-                "product"
-            ) &&
-            text.includes(
-                "payment"
+            (
+                text.includes("product") &&
+                text.includes("payment")
             )
         ) {
-
             complexity =
                 "High";
 
-
-            technologies =
-                "Frontend, Supabase, Product Database, Checkout Integration, Admin Dashboard";
-
+            technologies.push(
+                "Product Database",
+                "Checkout Integration",
+                "Admin Dashboard"
+            );
 
             scope =
                 "E-commerce platform";
-
 
             questions =
                 "Ask how many products they expect, which payment provider they want and whether inventory management is required.";
         }
 
-
-        /* AUTH */
-
         if (
-            text.includes(
-                "login"
-            ) ||
-            text.includes(
-                "register"
-            ) ||
-            text.includes(
-                "account"
-            ) ||
-            text.includes(
+            [
+                "login",
+                "register",
+                "account",
                 "user"
+            ].some(
+                (word) =>
+                    text.includes(word)
             )
         ) {
-
             complexity =
                 this.raiseComplexity(
                     complexity
                 );
 
-
-            technologies +=
-                ", Supabase Auth";
+            technologies.push(
+                "Supabase Auth"
+            );
         }
 
-
-        /* DATABASE */
-
         if (
-            text.includes(
-                "database"
-            ) ||
-            text.includes(
-                "dashboard"
-            ) ||
-            text.includes(
+            [
+                "database",
+                "dashboard",
                 "admin"
+            ].some(
+                (word) =>
+                    text.includes(word)
             )
         ) {
-
             complexity =
                 this.raiseComplexity(
                     complexity
                 );
 
-
-            technologies +=
-                ", PostgreSQL";
+            technologies.push(
+                "PostgreSQL"
+            );
         }
 
-
-        /* API */
-
         if (
-            text.includes(
-                "api"
-            ) ||
-            text.includes(
-                "integration"
-            ) ||
-            text.includes(
+            [
+                "api",
+                "integration",
                 "connect"
+            ].some(
+                (word) =>
+                    text.includes(word)
             )
         ) {
-
             complexity =
                 this.raiseComplexity(
                     complexity
                 );
 
-
-            technologies +=
-                ", API Integration";
+            technologies.push(
+                "API Integration"
+            );
         }
 
-
-        /* AI */
-
         if (
-            text.includes(
-                "ai"
-            ) ||
-            text.includes(
-                "artificial intelligence"
-            ) ||
-            text.includes(
+            [
+                "ai",
+                "artificial intelligence",
                 "chatbot"
+            ].some(
+                (word) =>
+                    text.includes(word)
             )
         ) {
-
             complexity =
                 "High";
 
-
-            technologies +=
-                ", AI API / Automation";
-
+            technologies.push(
+                "AI API / Automation"
+            );
 
             scope +=
                 " with AI functionality";
         }
 
-
-        /* PAYMENT */
-
         if (
-            text.includes(
-                "payment"
-            ) ||
-            text.includes(
-                "pay"
-            ) ||
-            text.includes(
+            [
+                "payment",
                 "subscription"
+            ].some(
+                (word) =>
+                    text.includes(word)
             )
         ) {
-
             complexity =
                 "High";
 
-
-            technologies +=
-                ", Payment Integration";
-
+            technologies.push(
+                "Payment Integration"
+            );
 
             questions +=
                 " Confirm the payment provider and whether recurring subscriptions are required.";
         }
 
-
-        /* URGENT */
-
         if (
-            text.includes(
-                "urgent"
-            ) ||
-            text.includes(
-                "asap"
-            ) ||
-            text.includes(
-                "quick"
-            ) ||
-            text.includes(
+            [
+                "urgent",
+                "asap",
+                "quick",
                 "fast"
+            ].some(
+                (word) =>
+                    text.includes(word)
             )
         ) {
-
             priority =
                 "High";
         }
-
-
-        /* LARGE DESCRIPTION */
 
         const wordCount =
             String(
@@ -2571,183 +1890,111 @@ class KenaTech {
                 ""
             )
                 .trim()
-                .split(
-                    /\s+/
-                )
-                .filter(
-                    Boolean
-                )
+                .split(/\s+/)
+                .filter(Boolean)
                 .length;
-
 
         if (
             wordCount >
             100
         ) {
-
             complexity =
                 this.raiseComplexity(
                     complexity
                 );
 
-
             scope =
                 "Detailed / larger project scope";
         }
 
-
         return {
-
             project:
                 lead.project_type ||
                 "Other",
 
-            complexity:
-                complexity,
+            complexity,
 
-            priority:
-                priority,
+            priority,
 
-            scope:
-                scope,
+            scope,
 
             technologies:
-                this.removeDuplicates(
-                    technologies
-                ),
+                [
+                    ...new Set(
+                        technologies
+                    )
+                ].join(", "),
 
-            action:
-                action,
+            action,
 
-            questions:
-                questions
+            questions
         };
     }
 
-
-    raiseComplexity(
-        current
-    ) {
-
+    raiseComplexity(current) {
         if (
             current ===
             "Low"
         ) {
-
             return "Medium";
         }
-
 
         if (
             current ===
             "Medium"
         ) {
-
             return "Medium–High";
         }
-
 
         if (
             current ===
             "Medium–High"
         ) {
-
             return "High";
         }
-
 
         return current;
     }
 
-
-    removeDuplicates(
-        technologies
-    ) {
-
-        const values =
-            technologies
-                .split(",")
-                .map(
-                    (item) =>
-                        item.trim()
-                );
-
-
-        return [
-            ...new Set(
-                values
-            )
-        ]
-            .join(", ");
-    }
-
-
-    /* =====================================
+    /* ==============================
        LEAD STATUS
-    ===================================== */
-
+    ============================== */
 
     async nextStatus(id) {
-
         const lead =
             this.leads.find(
                 (item) =>
                     item.id === id
             );
 
-
-        if (
-            !lead
-        ) {
-
+        if (!lead) {
             return;
         }
 
-
-        let newStatus =
-            "new";
-
-
-        if (
-            lead.status ===
-            "new"
-        ) {
-
-            newStatus =
-                "contacted";
-
-        } else if (
-            lead.status ===
-            "contacted"
-        ) {
-
-            newStatus =
-                "won";
-        }
-
+        const newStatus =
+            lead.status === "new"
+                ? "contacted"
+                : lead.status === "contacted"
+                    ? "won"
+                    : "new";
 
         const {
             error
-        } =
-            await supabaseClient
-                .from("leads")
-                .update({
-
-                    status:
-                        newStatus
-                })
-                .eq(
-                    "id",
-                    id
-                );
-
-
-        if (error) {
-
-            console.error(
-                error
+        } = await supabaseClient
+            .from("leads")
+            .update({
+                status: newStatus
+            })
+            .eq(
+                "id",
+                id
             );
 
+        if (error) {
+            console.error(
+                "Lead status error:",
+                error
+            );
 
             alert(
                 "Status could not be updated."
@@ -2756,45 +2003,33 @@ class KenaTech {
             return;
         }
 
-
         await this.loadLeads();
     }
 
-
     async deleteLead(id) {
-
-        const confirmed =
-            confirm(
-                "Delete this proposal?"
-            );
-
-
         if (
-            !confirmed
+            !confirm(
+                "Delete this proposal?"
+            )
         ) {
-
             return;
         }
 
-
         const {
             error
-        } =
-            await supabaseClient
-                .from("leads")
-                .delete()
-                .eq(
-                    "id",
-                    id
-                );
-
-
-        if (error) {
-
-            console.error(
-                error
+        } = await supabaseClient
+            .from("leads")
+            .delete()
+            .eq(
+                "id",
+                id
             );
 
+        if (error) {
+            console.error(
+                "Delete lead error:",
+                error
+            );
 
             alert(
                 "Proposal could not be deleted."
@@ -2803,60 +2038,45 @@ class KenaTech {
             return;
         }
 
-
         await this.loadLeads();
     }
 
-
     async clearAllLeads() {
-
-        if (
-            this.leads.length ===
-            0
-        ) {
-
+        if (!this.leads.length) {
             return;
         }
-
 
         if (
             !confirm(
                 "Delete ALL proposals?"
             )
         ) {
-
             return;
         }
-
 
         if (
             !confirm(
                 "Are you absolutely sure?"
             )
         ) {
-
             return;
         }
 
-
         const {
             error
-        } =
-            await supabaseClient
-                .from("leads")
-                .delete()
-                .gt(
-                    "id",
-                    0
-                );
-
-
-        if (error) {
-
-            console.error(
-                error
+        } = await supabaseClient
+            .from("leads")
+            .delete()
+            .gt(
+                "id",
+                0
             );
 
+        if (error) {
+            console.error(
+                "Clear leads error:",
+                error
+            );
 
             alert(
                 "Could not delete proposals."
@@ -2865,50 +2085,107 @@ class KenaTech {
             return;
         }
 
-
         await this.loadLeads();
     }
 
+    updateStats() {
+        if (this.totalLeads) {
+            this.totalLeads.textContent =
+                this.leads.length;
+        }
 
-    /* =====================================
-       ADMIN PROJECT MANAGEMENT
-    ===================================== */
+        if (this.newLeads) {
+            this.newLeads.textContent =
+                this.leads.filter(
+                    (lead) =>
+                        lead.status ===
+                        "new"
+                ).length;
+        }
 
+        if (this.contactedLeads) {
+            this.contactedLeads.textContent =
+                this.leads.filter(
+                    (lead) =>
+                        lead.status ===
+                        "contacted"
+                ).length;
+        }
+
+        if (this.wonLeads) {
+            this.wonLeads.textContent =
+                this.leads.filter(
+                    (lead) =>
+                        lead.status ===
+                        "won"
+                ).length;
+        }
+    }
+
+    resetStats() {
+        [
+            this.totalLeads,
+            this.newLeads,
+            this.contactedLeads,
+            this.wonLeads
+        ].forEach(
+            (element) => {
+                if (element) {
+                    element.textContent =
+                        "0";
+                }
+            }
+        );
+    }
+
+    updateSyncTime() {
+        if (!this.lastSynced) {
+            return;
+        }
+
+        this.lastSynced.textContent =
+            `Last synced: ${
+                new Date()
+                    .toLocaleTimeString(
+                        [],
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+                    )
+            }`;
+    }
+
+    /* ==============================
+       PROJECT MANAGEMENT
+    ============================== */
 
     async loadAdminProjectArea() {
-
         await this.loadClients();
-
         await this.loadAdminProjects();
     }
 
-
     async loadClients() {
-
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .from("profiles")
-                .select(
-                    "id,full_name,email,role,created_at"
-                )
-                .eq(
-                    "role",
-                    "client"
-                )
-                .order(
-                    "created_at",
-                    {
-                        ascending:
-                            false
-                    }
-                );
-
+        } = await supabaseClient
+            .from("profiles")
+            .select(
+                "id,full_name,email,role,created_at"
+            )
+            .eq(
+                "role",
+                "client"
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
         if (error) {
-
             console.error(
                 "Clients error:",
                 error
@@ -2917,47 +2194,29 @@ class KenaTech {
             return;
         }
 
-
         this.clients =
-            data || [];
+            data ||
+            [];
 
-
-        if (
-            !this.adminProjectClient
-        ) {
-
+        if (!this.adminProjectClient) {
             return;
         }
 
-
-        this.adminProjectClient.innerHTML = `
-            <option value="">
-                Select Client
-            </option>
-        `;
-
+        this.adminProjectClient.innerHTML =
+            '<option value="">Select Client</option>';
 
         this.clients.forEach(
             (client) => {
-
                 const option =
                     document.createElement(
                         "option"
                     );
 
-
                 option.value =
                     client.id;
 
-
                 option.textContent =
-                    `${
-                        client.full_name ||
-                        "Client"
-                    } — ${
-                        client.email
-                    }`;
-
+                    `${client.full_name || "Client"} — ${client.email}`;
 
                 this.adminProjectClient
                     .appendChild(
@@ -2967,42 +2226,29 @@ class KenaTech {
         );
     }
 
-
     async createAdminProject(event) {
-
         event.preventDefault();
-
 
         const clientId =
             this.adminProjectClient
                 .value;
 
-
         const title =
             document
-                .getElementById(
-                    "adminProjectTitle"
-                )
+                .getElementById("adminProjectTitle")
                 .value
                 .trim();
-
 
         const projectType =
             document
-                .getElementById(
-                    "adminProjectType"
-                )
+                .getElementById("adminProjectType")
                 .value;
-
 
         const description =
             document
-                .getElementById(
-                    "adminProjectDescription"
-                )
+                .getElementById("adminProjectDescription")
                 .value
                 .trim();
-
 
         if (
             !clientId ||
@@ -3010,156 +2256,128 @@ class KenaTech {
             !projectType ||
             !description
         ) {
-
-            this.adminProjectStatus.textContent =
-                "Complete all project fields.";
-
-            this.adminProjectStatus.style.color =
-                "#ef4444";
+            this.setStatus(
+                this.adminProjectStatus,
+                "Complete all project fields.",
+                "error"
+            );
 
             return;
         }
 
+        this.setButtonLoading(
+            this.createProjectButton,
+            true,
+            "Creating...",
+            "Create Project"
+        );
 
-        this.adminProjectStatus.style.color =
-            "#94a3b8";
-
-
-        this.adminProjectStatus.textContent =
-            "Creating project...";
-
+        this.setStatus(
+            this.adminProjectStatus,
+            "Creating project..."
+        );
 
         const {
             error
-        } =
-            await supabaseClient
-                .from("projects")
-                .insert([
-                    {
+        } = await supabaseClient
+            .from("projects")
+            .insert([
+                {
+                    client_id: clientId,
+                    title,
+                    project_type: projectType,
+                    description,
+                    status: "planning",
+                    progress: 0
+                }
+            ]);
 
-                        client_id:
-                            clientId,
-
-                        title:
-                            title,
-
-                        project_type:
-                            projectType,
-
-                        description:
-                            description,
-
-                        status:
-                            "planning",
-
-                        progress:
-                            0
-                    }
-                ]);
-
+        this.setButtonLoading(
+            this.createProjectButton,
+            false,
+            "Creating...",
+            "Create Project"
+        );
 
         if (error) {
-
             console.error(
+                "Create project error:",
                 error
             );
 
-
-            this.adminProjectStatus.style.color =
-                "#ef4444";
-
-
-            this.adminProjectStatus.textContent =
-                "Project could not be created.";
+            this.setStatus(
+                this.adminProjectStatus,
+                "Project could not be created.",
+                "error"
+            );
 
             return;
         }
 
+        this.adminProjectForm.reset();
 
-        this.adminProjectForm
-            .reset();
-
-
-        this.adminProjectStatus.style.color =
-            "#10b981";
-
-
-        this.adminProjectStatus.textContent =
-            "✓ Project created.";
-
+        this.setStatus(
+            this.adminProjectStatus,
+            "✓ Project created.",
+            "success"
+        );
 
         await this.loadAdminProjects();
     }
 
-
     async loadAdminProjects() {
-
-        if (
-            !this.adminProjectList
-        ) {
-
+        if (!this.adminProjectList) {
             return;
         }
 
-
-        this.adminProjectList.innerHTML = `
-            <div class="empty-leads">
-                Loading client projects...
-            </div>
-        `;
-
+        this.adminProjectList.innerHTML =
+            this.loadingCard(
+                "Loading client projects..."
+            );
 
         const {
             data,
             error
-        } =
-            await supabaseClient
-                .from("projects")
-                .select("*")
-                .order(
-                    "created_at",
-                    {
-                        ascending:
-                            false
-                    }
-                );
-
+        } = await supabaseClient
+            .from("projects")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
         if (error) {
-
             console.error(
+                "Admin projects error:",
                 error
             );
 
-
-            this.adminProjectList.innerHTML = `
-                <div class="empty-leads">
-                    Could not load projects.
-                </div>
-            `;
+            this.adminProjectList.innerHTML =
+                this.emptyCard(
+                    "Could not load projects.",
+                    "⚠️"
+                );
 
             return;
         }
-
 
         this.adminProjects =
-            data || [];
-
+            data ||
+            [];
 
         if (
-            this.adminProjects.length ===
-            0
+            !this.adminProjects.length
         ) {
-
-            this.adminProjectList.innerHTML = `
-                <div class="empty-leads">
-                    No client projects yet.
-                </div>
-            `;
+            this.adminProjectList.innerHTML =
+                this.emptyCard(
+                    "No client projects yet.",
+                    "📁"
+                );
 
             return;
         }
-
 
         this.adminProjectList.innerHTML =
             this.adminProjects
@@ -3171,15 +2389,10 @@ class KenaTech {
                 )
                 .join("");
 
-
         this.attachAdminProjectButtons();
     }
 
-
-    createAdminProjectCard(
-        project
-    ) {
-
+    createAdminProjectCard(project) {
         const client =
             this.clients.find(
                 (item) =>
@@ -3187,27 +2400,36 @@ class KenaTech {
                     project.client_id
             );
 
+        const status =
+            project.status ||
+            "planning";
+
+        const progress =
+            this.clampProgress(
+                project.progress
+            );
 
         return `
             <article
                 class="admin-project-card"
-                data-project-id="${project.id}"
+                data-project-id="${Number(project.id)}"
             >
 
-                <div
-                    class="project-card-header"
-                >
+                <div class="project-card-header">
 
                     <div>
 
                         <span
-                            class="status status-${this.escapeHTML(project.status)}"
+                            class="status status-${this.escapeHTML(status)}"
                         >
-                            ${this.escapeHTML(project.status)}
+                            ${this.escapeHTML(status)}
                         </span>
 
                         <h3>
-                            ${this.escapeHTML(project.title)}
+                            ${this.escapeHTML(
+                                project.title ||
+                                "Project"
+                            )}
                         </h3>
 
                         <p>
@@ -3219,143 +2441,75 @@ class KenaTech {
 
                     </div>
 
-
-                    <span
-                        class="lead-date"
-                    >
-                        #${project.id}
+                    <span class="lead-date">
+                        #${Number(project.id)}
                     </span>
 
                 </div>
 
-
-                <p
-                    class="project-description"
-                >
+                <p class="project-description">
                     ${this.escapeHTML(
                         project.description ||
                         ""
                     )}
                 </p>
 
-
-                <div
-                    class="progress-head"
-                >
+                <div class="progress-head">
 
                     <span>
                         Progress
                     </span>
 
                     <strong>
-                        ${project.progress}%
+                        ${progress}%
                     </strong>
 
                 </div>
 
-
-                <div
-                    class="progress-track"
-                >
+                <div class="progress-track">
 
                     <div
                         class="progress-bar"
-                        style="width:${project.progress}%"
+                        style="width:${progress}%"
                     ></div>
 
                 </div>
 
-
-                <div
-                    class="admin-project-controls"
-                >
+                <div class="admin-project-controls">
 
                     <select
                         class="admin-project-status-select"
-                        data-project-id="${project.id}"
+                        data-project-id="${Number(project.id)}"
                     >
-
-                        <option
-                            value="planning"
-                            ${
-                                project.status ===
-                                "planning"
-                                    ? "selected"
-                                    : ""
-                            }
-                        >
-                            Planning
-                        </option>
-
-                        <option
-                            value="development"
-                            ${
-                                project.status ===
-                                "development"
-                                    ? "selected"
-                                    : ""
-                            }
-                        >
-                            Development
-                        </option>
-
-                        <option
-                            value="review"
-                            ${
-                                project.status ===
-                                "review"
-                                    ? "selected"
-                                    : ""
-                            }
-                        >
-                            Review
-                        </option>
-
-                        <option
-                            value="completed"
-                            ${
-                                project.status ===
-                                "completed"
-                                    ? "selected"
-                                    : ""
-                            }
-                        >
-                            Completed
-                        </option>
-
+                        ${this.projectStatusOptions(status)}
                     </select>
-
 
                     <input
                         class="admin-project-progress-input"
-                        data-project-id="${project.id}"
+                        data-project-id="${Number(project.id)}"
                         type="number"
                         min="0"
                         max="100"
-                        value="${project.progress}"
+                        value="${progress}"
                     >
 
                 </div>
 
-
-                <div
-                    class="admin-project-actions"
-                >
+                <div class="admin-project-actions">
 
                     <button
                         class="status-btn"
                         data-project-action="save"
-                        data-project-id="${project.id}"
+                        data-project-id="${Number(project.id)}"
                         type="button"
                     >
                         Save Changes
                     </button>
 
-
                     <button
                         class="delete-btn"
                         data-project-action="delete"
-                        data-project-id="${project.id}"
+                        data-project-id="${Number(project.id)}"
                         type="button"
                     >
                         Delete Project
@@ -3367,70 +2521,87 @@ class KenaTech {
         `;
     }
 
-
-    attachAdminProjectButtons() {
-
-        const buttons =
-            this.adminProjectList
-                .querySelectorAll(
-                    "button[data-project-action]"
-                );
-
-
-        buttons.forEach(
-            (button) => {
-
-                button.addEventListener(
-                    "click",
-                    async () => {
-
-                        const id =
-                            Number(
-                                button
-                                    .dataset
-                                    .projectId
-                            );
-
-
-                        if (
-                            button
-                                .dataset
-                                .projectAction ===
-                            "save"
-                        ) {
-
-                            await this.saveAdminProject(
-                                id
-                            );
-                        }
-
-
-                        if (
-                            button
-                                .dataset
-                                .projectAction ===
-                            "delete"
-                        ) {
-
-                            await this.deleteAdminProject(
-                                id
-                            );
-                        }
-                    }
-                );
-            }
-        );
+    projectStatusOptions(current) {
+        return [
+            [
+                "planning",
+                "Planning"
+            ],
+            [
+                "development",
+                "Development"
+            ],
+            [
+                "review",
+                "Review"
+            ],
+            [
+                "completed",
+                "Completed"
+            ]
+        ]
+            .map(
+                ([value, label]) =>
+                    `
+                        <option
+                            value="${value}"
+                            ${
+                                current === value
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            ${label}
+                        </option>
+                    `
+            )
+            .join("");
     }
 
+    attachAdminProjectButtons() {
+        this.adminProjectList
+            ?.querySelectorAll(
+                "button[data-project-action]"
+            )
+            .forEach(
+                (button) => {
+                    button.addEventListener(
+                        "click",
+                        async () => {
+                            const id =
+                                Number(
+                                    button.dataset.projectId
+                                );
+
+                            if (
+                                button.dataset.projectAction ===
+                                "save"
+                            ) {
+                                await this.saveAdminProject(
+                                    id
+                                );
+                            }
+
+                            if (
+                                button.dataset.projectAction ===
+                                "delete"
+                            ) {
+                                await this.deleteAdminProject(
+                                    id
+                                );
+                            }
+                        }
+                    );
+                }
+            );
+    }
 
     async saveAdminProject(id) {
-
         const statusSelect =
             this.adminProjectList
                 .querySelector(
                     `.admin-project-status-select[data-project-id="${id}"]`
                 );
-
 
         const progressInput =
             this.adminProjectList
@@ -3438,53 +2609,45 @@ class KenaTech {
                     `.admin-project-progress-input[data-project-id="${id}"]`
                 );
 
-
         if (
             !statusSelect ||
             !progressInput
         ) {
-
             return;
         }
 
+        const status =
+            statusSelect.value;
 
         const progress =
-            Math.max(
-                0,
-                Math.min(
-                    100,
-                    Number(
-                        progressInput.value
-                    ) || 0
-                )
+            this.clampProgress(
+                progressInput.value
             );
 
+        progressInput.value =
+            progress;
 
         const {
             error
-        } =
-            await supabaseClient
-                .from("projects")
-                .update({
-
-                    status:
-                        statusSelect.value,
-
-                    progress:
-                        progress
-                })
-                .eq(
-                    "id",
-                    id
-                );
-
-
-        if (error) {
-
-            console.error(
-                error
+        } = await supabaseClient
+            .from("projects")
+            .update({
+                status,
+                progress,
+                updated_at:
+                    new Date()
+                        .toISOString()
+            })
+            .eq(
+                "id",
+                id
             );
 
+        if (error) {
+            console.error(
+                "Project update error:",
+                error
+            );
 
             alert(
                 "Project could not be updated."
@@ -3493,41 +2656,33 @@ class KenaTech {
             return;
         }
 
-
         await this.loadAdminProjects();
     }
 
-
     async deleteAdminProject(id) {
-
         if (
             !confirm(
                 "Delete this client project?"
             )
         ) {
-
             return;
         }
 
-
         const {
             error
-        } =
-            await supabaseClient
-                .from("projects")
-                .delete()
-                .eq(
-                    "id",
-                    id
-                );
-
-
-        if (error) {
-
-            console.error(
-                error
+        } = await supabaseClient
+            .from("projects")
+            .delete()
+            .eq(
+                "id",
+                id
             );
 
+        if (error) {
+            console.error(
+                "Project delete error:",
+                error
+            );
 
             alert(
                 "Project could not be deleted."
@@ -3536,360 +2691,168 @@ class KenaTech {
             return;
         }
 
-
         await this.loadAdminProjects();
     }
 
-
-    /* =====================================
-       GENERAL
-    ===================================== */
-
+    /* ==============================
+       COMMON
+    ============================== */
 
     async logout() {
+        await supabaseClient.auth.signOut();
 
-        await supabaseClient
-            .auth
-            .signOut();
+        this.adminPanel
+            ?.classList
+            .remove("show");
 
+        this.clientPanel
+            ?.classList
+            .remove("show");
 
-        if (
-            this.adminPanel
-        ) {
+        this.adminLoginModal
+            ?.classList
+            .remove("show");
 
-            this.adminPanel
-                .classList
-                .remove(
-                    "show"
-                );
-        }
-
-
-        if (
-            this.clientPanel
-        ) {
-
-            this.clientPanel
-                .classList
-                .remove(
-                    "show"
-                );
-        }
-
+        this.clientAuthModal
+            ?.classList
+            .remove("show");
 
         document.body
             .classList
-            .remove(
-                "modal-open"
-            );
-
-
-        this.leads = [];
-
-        this.adminProjects = [];
-
-        this.clients = [];
-
+            .remove("modal-open");
 
         this.resetStats();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 
-
-    updateStats(leads) {
-
-        if (
-            this.totalLeads
-        ) {
-
-            this.totalLeads.textContent =
-                leads.length;
-        }
-
+    clampProgress(value) {
+        const number =
+            Number(value);
 
         if (
-            this.newLeads
+            !Number.isFinite(
+                number
+            )
         ) {
-
-            this.newLeads.textContent =
-                leads.filter(
-                    (lead) =>
-                        lead.status ===
-                        "new"
-                )
-                    .length;
+            return 0;
         }
 
-
-        if (
-            this.contactedLeads
-        ) {
-
-            this.contactedLeads.textContent =
-                leads.filter(
-                    (lead) =>
-                        lead.status ===
-                        "contacted"
-                )
-                    .length;
-        }
-
-
-        if (
-            this.wonLeads
-        ) {
-
-            this.wonLeads.textContent =
-                leads.filter(
-                    (lead) =>
-                        lead.status ===
-                        "won"
-                )
-                    .length;
-        }
+        return Math.min(
+            100,
+            Math.max(
+                0,
+                Math.round(number)
+            )
+        );
     }
 
-
-    resetStats() {
-
-        if (
-            this.totalLeads
-        ) {
-
-            this.totalLeads.textContent =
-                "0";
-        }
-
-
-        if (
-            this.newLeads
-        ) {
-
-            this.newLeads.textContent =
-                "0";
-        }
-
-
-        if (
-            this.contactedLeads
-        ) {
-
-            this.contactedLeads.textContent =
-                "0";
-        }
-
-
-        if (
-            this.wonLeads
-        ) {
-
-            this.wonLeads.textContent =
-                "0";
-        }
-
-
-        if (
-            this.visibleLeadCount
-        ) {
-
-            this.visibleLeadCount.textContent =
-                "0 proposals";
-        }
-    }
-
-
-    updateVisibleCount(count) {
-
-        if (
-            !this.visibleLeadCount
-        ) {
-
-            return;
-        }
-
-
-        this.visibleLeadCount.textContent =
-            `${count} ${
-                count ===
-                1
-                    ? "proposal"
-                    : "proposals"
-            }`;
-    }
-
-
-    updateSyncTime() {
-
-        if (
-            !this.lastSynced
-        ) {
-
-            return;
-        }
-
-
-        this.lastSynced.textContent =
-            `Last synced: ${
-                new Date()
-                    .toLocaleTimeString(
-                        [],
-                        {
-                            hour:
-                                "2-digit",
-
-                            minute:
-                                "2-digit"
-                        }
-                    )
-            }`;
-    }
-
-
-    showLoading() {
-
-        if (
-            !this.leadList
-        ) {
-
-            return;
-        }
-
-
-        this.leadList.innerHTML = `
+    loadingCard(message) {
+        return `
             <div class="empty-leads">
 
                 <div
                     style="
-                        font-size:38px;
-                        margin-bottom:10px;
+                        font-size:32px;
+                        margin-bottom:8px;
                     "
                 >
                     ⏳
                 </div>
 
-                <h3>
-                    Loading proposals...
-                </h3>
-
-            </div>
-        `;
-    }
-
-
-    showDashboardError(message) {
-
-        if (
-            !this.leadList
-        ) {
-
-            return;
-        }
-
-
-        this.leadList.innerHTML = `
-            <div class="empty-leads">
-
-                <div
-                    style="
-                        font-size:38px;
-                        margin-bottom:10px;
-                    "
-                >
-                    ⚠️
-                </div>
-
-                <h3>
-                    Dashboard Error
-                </h3>
-
                 <p>
-                    ${this.escapeHTML(
-                        message
-                    )}
+                    ${this.escapeHTML(message)}
                 </p>
 
             </div>
         `;
     }
 
+    emptyCard(
+        title,
+        icon = "📭",
+        description = ""
+    ) {
+        return `
+            <div class="empty-leads">
+
+                <div
+                    style="
+                        font-size:40px;
+                        margin-bottom:10px;
+                    "
+                >
+                    ${icon}
+                </div>
+
+                <h3>
+                    ${this.escapeHTML(title)}
+                </h3>
+
+                ${
+                    description
+                        ? `
+                            <p>
+                                ${this.escapeHTML(description)}
+                            </p>
+                        `
+                        : ""
+                }
+
+            </div>
+        `;
+    }
 
     formatDate(value) {
+        if (!value) {
+            return "—";
+        }
 
         const date =
-            new Date(
-                value
-            );
-
+            new Date(value);
 
         if (
             Number.isNaN(
                 date.getTime()
             )
         ) {
-
-            return "";
+            return "—";
         }
 
-
-        return date
-            .toLocaleDateString(
-                "en-US",
-                {
-                    year:
-                        "numeric",
-
-                    month:
-                        "short",
-
-                    day:
-                        "numeric"
-                }
-            );
+        return date.toLocaleDateString(
+            "en-US",
+            {
+                month: "short",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
     }
-
 
     escapeHTML(value) {
-
         return String(
-            value ?? ""
-        )
-            .replace(
-                /[&<>"']/g,
-                (character) => {
-
-                    const entities = {
-
-                        "&":
-                            "&amp;",
-
-                        "<":
-                            "&lt;",
-
-                        ">":
-                            "&gt;",
-
-                        '"':
-                            "&quot;",
-
-                        "'":
-                            "&#039;"
-                    };
-
-
-                    return entities[
-                        character
-                    ];
-                }
-            );
+            value ??
+            ""
+        ).replace(
+            /[&<>'"]/g,
+            (char) =>
+                ({
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    "'": "&#039;",
+                    '"': "&quot;"
+                })[char]
+        );
     }
 }
-
-
-/* START APPLICATION */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
-
         window.kenaTech =
             new KenaTech();
     }
